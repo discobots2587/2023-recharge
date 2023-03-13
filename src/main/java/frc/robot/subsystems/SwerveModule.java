@@ -117,7 +117,9 @@ public class SwerveModule extends SubsystemBase {
     desiredState = SwerveModuleState.optimize(desiredState, getState().angle); 
     setAngle(desiredState);
     setSpeed(desiredState);
-    
+
+    SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] State", getState().toString());
+    SmartDashboard.putNumber("Swerve " + driveMotor.getDeviceId() + " Abs Encoder", getAbsoluteEncoderAngle());
   }
 
   public void setSpeed(SwerveModuleState desiredState){
