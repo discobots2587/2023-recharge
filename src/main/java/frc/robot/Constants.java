@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 
 
 /**
@@ -19,6 +21,7 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
   public static final int PDH_ID = 55;
+  public static final PowerDistribution PDH = new PowerDistribution(Constants.PDH_ID, ModuleType.kRev);
 
   public static class IOConstants {
     public static final int DRIVER_CONTROLLER_PORT = 0;
@@ -92,33 +95,30 @@ public final class Constants {
     public static final double kP_PERCENT = 0.009;
   }
 
-  public static final class IntakeConstants{
-    public static final int INTAKE_DRIVER_ID = 50;
-    public static final int INTAKE_PIVOT_ID = 51;
+  // public static final class IntakeConstants{
+  //   public static final int INTAKE_DRIVER_ID = 50;
+  //   public static final int INTAKE_PIVOT_ID = 51;
 
-    public static final double PIVOT_kP = 0.15;
-    public static final double PIVOT_kI = 0;
-    public static final double PIVOT_kD = 0;
-    public static final double PIVOT_MIN_OUTPUT = -0.25;
-    public static final double PIVOT_MAX_OUTPUT = 0.25;
+  //   public static final double PIVOT_kP = 0.15;
+  //   public static final double PIVOT_kI = 0;
+  //   public static final double PIVOT_kD = 0;
+  //   public static final double PIVOT_MIN_OUTPUT = -0.25;
+  //   public static final double PIVOT_MAX_OUTPUT = 0.25;
 
-    public static final double DEPLOYED_ROT = 10.2;
-  }
+  //   public static final double DEPLOYED_ROT = 10.2;
+  // }
 
   public static final class ArmConstants{
-    public static final int ARM_DRIVER_ID = 23;
-    public static final int ARM_PIVOT_ID = 24;
+    public static final int ARM_DRIVER_ID = 50;
+    public static final int ARM_INTAKE_ID = 51;
 
-    public static final double PIVOT_kP = 0.09;
-    public static final double PIVOT_kI = 0;
-    public static final double PIVOT_kD = 0;
-    public static final double PIVOT_MIN_OUTPUT = -0.5;
-    public static final double PIVOT_MAX_OUTPUT = 0.5;
+    public static final double ARM_kP = 1.0;
+    public static final double ARM_kI = 0.0;
+    public static final double ARM_kD = 0.0;
 
-    public static final double LOW_MODE_ROT = 3.5;
-    public static final double MID_MODE_ROT = 16.5;
-    public static final double HIGH_MODE_ROT = 21;
-    public static final double SUBS_MODE_ROT = 20.1;
+    public static final double ENCODER_TICS_UP = 5000;
+    public static final double ENCODER_TICS_MID = 2500;
+    // public static final int ARM_PIVOT_ID = 24;
   }
 
   public static final class ShooterConstants{

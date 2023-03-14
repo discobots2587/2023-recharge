@@ -4,13 +4,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.IntakeHold;
+// import frc.robot.commands.IntakeHold;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,9 +29,9 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    RobotContainer.pdh.setSwitchableChannel(false);
-    PortForwarder.add(8888, "limelight.local", 5800);
-    PortForwarder.add(8889, "limelight.local", 5801);
+    // RobotContainer.pdh.setSwitchableChannel(false);
+    // PortForwarder.add(8888, "limelight.local", 5800);
+    // PortForwarder.add(8889, "limelight.local", 5801);
   }
 
   /**
@@ -52,13 +49,12 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    SmartDashboard.putNumber("FrontRight:", m_robotContainer.drivetrain.getrightFront().getAbsoluteEncoderAngle());
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-    RobotContainer.drivetrain.setAllMode(false);
     RobotContainer.pdh.setSwitchableChannel(false);
   }
 
@@ -75,7 +71,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     RobotContainer.pdh.setSwitchableChannel(true);
-    RobotContainer.intake.setDefaultCommand(new IntakeHold());
   }
 
   /** This function is called periodically during autonomous. */
@@ -88,26 +83,13 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    RobotContainer.drivetrain.setAllMode(true);
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
-    RobotContainer.drivetrain.resetAllEncoders();
-    RobotContainer.shooter.shooterOff();
-    RobotContainer.pdh.setSwitchableChannel(true);
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    if(RobotContainer.arm.isDeployed() ? 
-        (RobotContainer.intake.isDeployed() || RobotContainer.bigStick.isDeployed()) : 
-        (RobotContainer.intake.isDeployed() && RobotContainer.bigStick.isDeployed())){
-      RobotContainer.driverController.setRumble(RumbleType.kBothRumble, 1);
-    }
-    else{
-      RobotContainer.driverController.setRumble(RumbleType.kBothRumble, 0);
-    }
+  public void teleopPeriodic()
+  {
+    
   }
 
   @Override

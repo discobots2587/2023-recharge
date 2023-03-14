@@ -9,7 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.drivers.PearadoxSparkMax;
-import frc.robot.Constants.IntakeConstants;
+// import frc.robot.Constants.IntakeConstants;
 
 public class IntakeRollers extends SubsystemBase {
   private PearadoxSparkMax driver;
@@ -22,7 +22,7 @@ public class IntakeRollers extends SubsystemBase {
 
   /** Creates a new IntakeRollers. */
   public IntakeRollers() {
-    driver = new PearadoxSparkMax(IntakeConstants.INTAKE_DRIVER_ID, MotorType.kBrushless, IdleMode.kBrake, 40, true);
+    driver = new PearadoxSparkMax(57, MotorType.kBrushless, IdleMode.kBrake, 40, true);
   }
 
   @Override
