@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.IOConstants;
+import frc.robot.commands.ArmZero;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.IntakeRollers;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -32,6 +33,7 @@ public class RobotContainer {
   public static final XboxController driverController = new XboxController(IOConstants.DRIVER_CONTROLLER_PORT);
   private final JoystickButton Intake_ON_LB = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
   private final JoystickButton Intake_OFF_RB = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
    
   // public static final Launchpad opController = new Launchpad();
   // // private final LaunchpadButton[][] gridButtons = new LaunchpadButton[3][9];
@@ -61,6 +63,7 @@ public class RobotContainer {
     Intake_ON_LB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     Intake_OFF_RB.onTrue(new InstantCommand(() -> arm.outtake()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> arm.intakeStop()));
+    ZERO_ARM.onTrue(new ArmZero());
     
   }
 

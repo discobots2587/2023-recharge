@@ -13,12 +13,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.SparkMaxRelativeEncoder;
-
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
+// import frc.robot.Constants;
 import frc.robot.Constants.ArmConstants;
 
 public class Arm extends SubsystemBase {
@@ -34,7 +32,7 @@ public class Arm extends SubsystemBase {
   public Arm() {
     armDrive = new CANSparkMax(ArmConstants.ARM_DRIVER_ID, MotorType.kBrushless);
     armDrive.setIdleMode(IdleMode.kBrake);
-    armEncoder = armDrive.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 4096);
+    armEncoder = armDrive.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     armController = armDrive.getPIDController();
     
     homeSwitch = new DigitalInput(0);
@@ -67,7 +65,25 @@ public class Arm extends SubsystemBase {
     armDrive.set(0);
   }
 
-  public void armJoystick(){};
+  public void armEncZero()
+  {
+    armEncoder.setPosition(0);
+  }
+
+  public void armRotateOpenEnded(double speed)
+  {
+    armDrive.set(speed);
+  }
+
+  public void armRotateTo(double degrees)
+  {
+
+  };
+
+  public boolean getHomeSwitch()
+  {
+    return homeSwitch.get();
+  }
 
   @Override
   public void periodic()
@@ -75,6 +91,6 @@ public class Arm extends SubsystemBase {
     // This method will be called once per scheduler run
     //SmartDashboard.putNumber("Arm Adjust", armAdjust);
     SmartDashboard.putNumber("Arm Encoder", armEncoder.getPosition());
-    SmartDashboard.putBoolean("Arm Homed", homeSwitch.get());
+    SmartDashboard.putBoolean("Arm Homed", getHomeSwitch());
   }
 }
