@@ -37,18 +37,18 @@ public final class Constants {
     public static final int LEFT_BACK_TURN_ID = 21;
     public static final int RIGHT_BACK_TURN_ID = 30;
     
-    public static final int LEFT_FRONT_CANCODER_ID_threncID = 0;
-    public static final int RIGHT_FRONT_CANCODER_ID_threncID = 1;
-    public static final int LEFT_BACK_CANCODER_ID_threncID = 2;
-    public static final int RIGHT_BACK_CANCODER_ID_threncID = 3;
+    public static final int RIGHT_FRONT_CANCODER_ID_threncID = 0;
+    public static final int LEFT_FRONT_CANCODER_ID_threncID = 1;
+    public static final int RIGHT_BACK_CANCODER_ID_threncID = 2;
+    public static final int LEFT_BACK_CANCODER_ID_threncID = 3;
 
     //public static final SerialPort PIGEON_ID = SerialPort();
 
     //Drivetrain characteristics
-    public static final double LEFT_FRONT_OFFSET = 0; //2.9
-    public static final double RIGHT_FRONT_OFFSET = 0; //118.8
-    public static final double LEFT_BACK_OFFSET = 0; //163.9
-    public static final double RIGHT_BACK_OFFSET = 0; //97.1
+    public static final double LEFT_FRONT_OFFSET = 184.32; //183.96
+    public static final double RIGHT_FRONT_OFFSET = 299.88; //299.88
+    public static final double LEFT_BACK_OFFSET = 255.6; //254.52
+    public static final double RIGHT_BACK_OFFSET = 277.56; //277.92
 
     public static final double WHEEL_DIAMETER = Units.inchesToMeters(4);
     public static final double DRIVE_MOTOR_GEAR_RATIO = 6.75;
@@ -67,6 +67,7 @@ public final class Constants {
     public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED / 1.75;
     public static final double TELE_DRIVE_MAX_ACCELERATION = 3;
     public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 3;
+    public static final double deadbandValue = 0.05;
 
     //Auton constraints
     public static final double AUTO_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED / 1.5;
@@ -93,7 +94,7 @@ public final class Constants {
   }
 
   public static final class IntakeConstants{
-    public static final int INTAKE_DRIVER_ID = 50;
+    public static final int INTAKE_DRIVER_ID = 56;
     public static final int INTAKE_PIVOT_ID = 51;
 
     public static final double PIVOT_kP = 0.15;

@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -24,8 +24,8 @@ public class Shooter extends SubsystemBase {
   private PearadoxSparkMax topShooter;
   private PearadoxSparkMax botShooter;
 
-  private RelativeEncoder topEncoder;
-  private RelativeEncoder botEncoder;
+  // private RelativeEncoder topEncoder;
+  // private RelativeEncoder botEncoder;
 
   private SparkMaxPIDController topController;
   private SparkMaxPIDController botController;
@@ -62,8 +62,8 @@ public class Shooter extends SubsystemBase {
       ShooterConstants.BOT_SHOOTER_kP, ShooterConstants.BOT_SHOOTER_kI, ShooterConstants.BOT_SHOOTER_kD,
       ShooterConstants.SHOOTER_MIN_OUTPUT, ShooterConstants.SHOOTER_MAX_OUTPUT);
 
-    topEncoder = topShooter.getEncoder();
-    botEncoder = botShooter.getEncoder();
+    // topEncoder = topShooter.getEncoder();
+    // botEncoder = botShooter.getEncoder();
 
     topController = topShooter.getPIDController();
     botController = botShooter.getPIDController();

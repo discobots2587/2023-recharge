@@ -45,7 +45,7 @@ public class SwerveModule extends SubsystemBase {
       this.absoluteEncoderReversed = absoluteEncoderReversed;
 
       input = new AnalogInput(threncID);
-      absoluteEncoder = new AnalogEncoder (input);
+      absoluteEncoder = new AnalogEncoder(input);
 
       driveMotor = new PearadoxSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed);
       turnMotor = new PearadoxSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
@@ -93,7 +93,8 @@ public class SwerveModule extends SubsystemBase {
   }
 
   public double getAbsoluteEncoderAngle(){
-    double angle = absoluteEncoder.getPositionOffset();
+    double angle = absoluteEncoder.getAbsolutePosition(); //between 0-1
+    angle *= 360;
     angle -= absoluteEncoderOffset;
     angle *= (Math.PI / 180);
     return angle * (absoluteEncoderReversed ? -1.0 : 1.0);
@@ -118,6 +119,8 @@ public class SwerveModule extends SubsystemBase {
     setAngle(desiredState);
     setSpeed(desiredState);
     
+    SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] State", getState().toString());
+    SmartDashboard.putNumber("Swerve " + driveMotor.getDeviceId() + " Abs Encoder", getAbsoluteEncoderAngle());
   }
 
   public void setSpeed(SwerveModuleState desiredState){
@@ -140,5 +143,9 @@ public class SwerveModule extends SubsystemBase {
   public void stop(){
     driveMotor.set(0);
     turnMotor.set(0);
+  }
+
+  public AnalogEncoder getAbsoluteEncoder () {
+    return absoluteEncoder;
   }
 }
