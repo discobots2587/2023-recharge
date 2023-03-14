@@ -307,4 +307,8 @@ public class Drivetrain extends SubsystemBase {
   public void setNormalMode(){
     mode = DriveMode.kNormal;
   }
+
+  public SwerveModule getrightFront () {
+    return rightFront;
+  }
 }
