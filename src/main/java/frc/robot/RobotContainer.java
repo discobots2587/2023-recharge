@@ -22,7 +22,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeRollers;
 import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.SwerveModule;
+// import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.Transport;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
@@ -114,7 +114,7 @@ public class RobotContainer {
     // autoChooser.addOption("1Cone1CubeC_Bal", "1Cone1CubeC_Bal");
     autoChooser.addOption("Nothing", "TestAuto");
     autoChooser.addOption("DriveBack", "DriveBack");
-    //autoChooser.addOption("SimpleTest", "SimpleTest");
+    autoChooser.addOption("SimpleTest", "SimpleTest");
   }
 
   /**
