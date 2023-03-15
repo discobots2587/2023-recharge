@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import java.text.DecimalFormat;
+//import java.text.DecimalFormat;
 
 //import com.ctre.phoenix.sensors.Pigeon2;
 
@@ -16,8 +16,9 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.SwerveConstants;
 
@@ -66,7 +67,7 @@ public class Drivetrain extends SubsystemBase {
   private SlewRateLimiter turnLimiter = new SlewRateLimiter(SwerveConstants.TELE_DRIVE_MAX_ANGULAR_ACCELERATION);
 
   private AHRS gyro = new AHRS (Port.kMXP);
-  private double rates[] = new double[3];
+  //private double rates[] = new double[3];
 
   private SwerveDriveOdometry odometry = new SwerveDriveOdometry(SwerveConstants.DRIVE_KINEMATICS, new Rotation2d(0), getModulePositions());
 
@@ -108,10 +109,10 @@ public class Drivetrain extends SubsystemBase {
   public void swerveDrive(double frontSpeed, double sideSpeed, double turnX, double turnY, 
     boolean fieldOriented, boolean headingControl, boolean deadband){
     if(deadband){
-      frontSpeed = Math.abs(frontSpeed) > 0.1 ? frontSpeed : 0;
-      sideSpeed = Math.abs(sideSpeed) > 0.1 ? sideSpeed : 0;
-      turnX = Math.abs(turnX) > 0.1 ? turnX : 0;
-      turnY = Math.abs(turnY) > 0.1 ? turnY : 0;
+      frontSpeed = Math.abs(frontSpeed) > Constants.SwerveConstants.deadbandValue ? frontSpeed : 0;
+      sideSpeed = Math.abs(sideSpeed) > Constants.SwerveConstants.deadbandValue ? sideSpeed : 0;
+      turnX = Math.abs(turnX) > Constants.SwerveConstants.deadbandValue ? turnX : 0;
+      turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
 
     double turnSpeed;
@@ -198,7 +199,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setHeading(double heading){
-    gyro.zeroYaw();;
+    gyro.zeroYaw();
   }
 
   public double getHeading(){
@@ -310,5 +311,17 @@ public class Drivetrain extends SubsystemBase {
 
   public SwerveModule getrightFront () {
     return rightFront;
+  }
+
+  public SwerveModule getleftFront () {
+    return leftFront;
+  }
+
+  public SwerveModule getrightBack () {
+    return rightBack;
+  }
+
+  public SwerveModule getleftBack () {
+    return leftBack;
   }
 }

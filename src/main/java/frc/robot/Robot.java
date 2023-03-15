@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
     PortForwarder.add(8888, "limelight.local", 5800);
     PortForwarder.add(8889, "limelight.local", 5801);
   }
+  //githubtest
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -52,7 +53,10 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    SmartDashboard.putNumber("FrontRight:", m_robotContainer.drivetrain.getrightFront().getAbsoluteEncoderAngle());
+    SmartDashboard.putNumber("Front Left", m_robotContainer.drivetrain.getleftFront().getAbsoluteEncoder().getAbsolutePosition());   //Front right
+    SmartDashboard.putNumber("Front Right", m_robotContainer.drivetrain.getrightFront().getAbsoluteEncoder().getAbsolutePosition()); //Front left
+    SmartDashboard.putNumber("Back Left", m_robotContainer.drivetrain.getrightBack().getAbsoluteEncoder().getAbsolutePosition());    //Back right
+    SmartDashboard.putNumber("Back Right", m_robotContainer.drivetrain.getleftBack().getAbsoluteEncoder().getAbsolutePosition());    //Back left
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
