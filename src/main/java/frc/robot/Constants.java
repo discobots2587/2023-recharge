@@ -112,12 +112,12 @@ public final class Constants {
     public static final int ARM_DRIVER_ID = 50;
     public static final int ARM_INTAKE_ID = 51;
 
-    public static final double ARM_kP = 1.0;
+    public static final double ARM_kP = 0.1;
     public static final double ARM_kI = 0.0;
     public static final double ARM_kD = 0.0;
 
-    public static final double ENCODER_TICS_UP = 5000;
-    public static final double ENCODER_TICS_MID = 2500;
+    public static final double ENCODER_DEG_UP = -57;
+    public static final double ENCODER_DEG_MID = -23.5;
     // public static final int ARM_PIVOT_ID = 24;
   }
 

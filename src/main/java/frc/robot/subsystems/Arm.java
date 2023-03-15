@@ -46,7 +46,7 @@ public class Arm extends SubsystemBase {
 
   public void pickUp()
   {
-    intake.set(ControlMode.PercentOutput, -25);
+    intake.set(ControlMode.PercentOutput, -25); 
     // return false;
   }
   
@@ -75,14 +75,15 @@ public class Arm extends SubsystemBase {
     armDrive.set(speed);
   }
 
-  public void armRotateTo(double degrees)
+  public void armRotateTo(double rotations)
   {
-
+    // double rotations = degrees/360.0;
+    armController.setReference(rotations, CANSparkMax.ControlType.kPosition);
   };
 
   public boolean getHomeSwitch()
   {
-    return homeSwitch.get();
+    return !homeSwitch.get();
   }
 
   @Override

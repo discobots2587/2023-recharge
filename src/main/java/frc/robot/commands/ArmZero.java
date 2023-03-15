@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
@@ -19,26 +20,27 @@ public class ArmZero extends CommandBase {
   @Override
   public void initialize()
   {
-    SmartDashboard.putNumber("Speed", 0.25);
+    SmartDashboard.putNumber("Speed", 0.1);
+    RobotContainer.arm.armRotateOpenEnded(SmartDashboard.getNumber("Speed", 0.1));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute()
   {
-      RobotContainer.arm.armRotateOpenEnded(SmartDashboard.getNumber("Speed",0.25));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.arm.armHold();
+    Timer.delay(3);//Stops the bounce on the arm.
     RobotContainer.arm.armEncZero();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !RobotContainer.arm.getHomeSwitch();
+    return RobotContainer.arm.getHomeSwitch();
   }
 }

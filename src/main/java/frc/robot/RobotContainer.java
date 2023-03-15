@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.IOConstants;
+import frc.robot.commands.ArmMove;
 import frc.robot.commands.ArmZero;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.IntakeRollers;
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,12 +30,16 @@ public class RobotContainer {
   public static final IntakeRollers intakeRollers = IntakeRollers.getInstance();
   public static final Arm  arm = new Arm();
   public static final PowerDistribution pdh = Constants.PDH;
+  public final ArmMove armMove;
 
 
   public static final XboxController driverController = new XboxController(IOConstants.DRIVER_CONTROLLER_PORT);
   private final JoystickButton Intake_ON_LB = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
   private final JoystickButton Intake_OFF_RB = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
   private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
+  private final JoystickButton ARM_UP = new JoystickButton(driverController, XboxController.Button.kX.value);
+  private final JoystickButton ARM_Mid = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton ARM_STOW = new JoystickButton(driverController, XboxController.Button.kB.value);
    
   // public static final Launchpad opController = new Launchpad();
   // // private final LaunchpadButton[][] gridButtons = new LaunchpadButton[3][9];
@@ -42,11 +48,13 @@ public class RobotContainer {
   // private final LaunchpadButton intakeToggle_1_5 = new LaunchpadButton(opController, 1, 5);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+  public RobotContainer()
+  {
+    armMove = new ArmMove(arm, () -> ARM_UP.getAsBoolean(), () -> ARM_Mid.getAsBoolean(), () -> ARM_STOW.getAsBoolean());
     // Configure the trigger bindings
     configureBindings();
     // intake.setDefaultCommand(new IntakeHold());
-    
+    arm.setDefaultCommand(armMove);
   }
 
   /**
@@ -64,7 +72,6 @@ public class RobotContainer {
     Intake_OFF_RB.onTrue(new InstantCommand(() -> arm.outtake()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     ZERO_ARM.onTrue(new ArmZero());
-    
   }
 
   /**
