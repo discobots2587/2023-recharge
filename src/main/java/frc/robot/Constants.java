@@ -108,7 +108,7 @@ public final class Constants {
 
   public static final class ArmConstants{
     public static final int ARM_DRIVER_ID = 23;
-    public static final int ARM_PIVOT_ID = 24;
+    public static final int ARM_PIVOT_ID = 500; //50
 
     public static final double PIVOT_kP = 0.09;
     public static final double PIVOT_kI = 0;

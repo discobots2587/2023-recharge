@@ -22,13 +22,13 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeRollers;
 import frc.robot.subsystems.Shooter;
-//import frc.robot.subsystems.SwerveModule;
+import frc.robot.subsystems.SwerveModule;
 import frc.robot.subsystems.Transport;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -104,7 +104,7 @@ public class RobotContainer {
     arm.setDefaultCommand(new ArmHold());
     bigStick.setDefaultCommand(new BigStickHold());
 
-    //SmartDashboard.putData("Auton Chooser", autoChooser);
+    SmartDashboard.putData("Auton Chooser", autoChooser);
     autoChooser.setDefaultOption("1CubeM_Bal", "1CubeM_Bal");
     autoChooser.addOption("2CubeNC", "2CubeNC");
     autoChooser.addOption("2CubeNC_Bal", "2CubeNC_Bal");
@@ -114,6 +114,7 @@ public class RobotContainer {
     // autoChooser.addOption("1Cone1CubeC_Bal", "1Cone1CubeC_Bal");
     autoChooser.addOption("Nothing", "TestAuto");
     autoChooser.addOption("DriveBack", "DriveBack");
+    //autoChooser.addOption("SimpleTest", "SimpleTest");
   }
 
   /**
@@ -173,6 +174,11 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.c1C0_M_Bal();
+    }
+    else if(autoChooser.getSelected().equals("SimpleTest")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.SimpleTest();
     }
     else if(autoChooser.getSelected().equals("2CubeNC")){
       drivetrain.resetAllEncoders();
