@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.revrobotics.CANSparkMax;
 // import com.revrobotics.EncoderType;
@@ -35,9 +36,10 @@ public class Arm extends SubsystemBase {
     armEncoder = armDrive.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     armController = armDrive.getPIDController();
     
-    homeSwitch = new DigitalInput(0);
+    homeSwitch = new DigitalInput(ArmConstants.ARM_LIM_SWITCH_PORT);
 
     intake = new VictorSPX(ArmConstants.ARM_INTAKE_ID);
+    intake.setNeutralMode(NeutralMode.Brake);
     
     armController.setP(ArmConstants.ARM_kP);
     armController.setI(ArmConstants.ARM_kI);

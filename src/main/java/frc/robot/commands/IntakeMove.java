@@ -9,47 +9,45 @@ import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Arm;
-import frc.robot.Constants;
+import frc.robot.Constants.IntakeConstants;
+// import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Intake;
+// import frc.robot.Constants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import frc.robot.Robot;
 
-public class ArmMove extends CommandBase {
+public class IntakeMove extends CommandBase
+{
   /** Creates a new ArmHold. */
-  double targetHigh;
-  double targetMid;
+  double targetDown;
   double targetStow;
-  BooleanSupplier UpSup;
-  BooleanSupplier midSup;
-  BooleanSupplier StowSup;
+  BooleanSupplier downSup;
+  BooleanSupplier stowSup;
 
-  Arm arm;
+  Intake intake;
 
-  public ArmMove(Arm armSup, BooleanSupplier UpButton, BooleanSupplier MidButton, BooleanSupplier StowButton) {
+  public IntakeMove(Intake intakeSup, BooleanSupplier DownButton, BooleanSupplier StowButton) {
     // Use addRequirements() here to declare subsystem dependencies.
-    arm = armSup;
-    UpSup = UpButton;
-    midSup = MidButton;
-    StowSup = StowButton;
-    addRequirements(RobotContainer.arm);
+    intake = intakeSup;
+    downSup = DownButton;
+    stowSup = StowButton;
+    addRequirements(RobotContainer.intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize()
   {
-    targetHigh = Constants.ArmConstants.ENCODER_ROT_UP;
-    targetMid = Constants.ArmConstants.ENCODER_ROT_UP;
-    targetStow = 0;
+    targetDown = IntakeConstants.ENCODER_ROT_DOWN;
+    targetStow = IntakeConstants.ENCODER_ROT_STOW;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute()
   {
-    if (UpSup.getAsBoolean()) {arm.armRotateTo(targetHigh); SmartDashboard.putString("Arm Position", "High");}
-    else if (midSup.getAsBoolean()) {arm.armRotateTo(targetMid); SmartDashboard.putString("Arm Position", "Mid");}
-    else if (StowSup.getAsBoolean()) {arm.armRotateTo(targetStow); SmartDashboard.putString("Arm Position", "Stow");}
+    if (downSup.getAsBoolean()) {intake.intakeRotateTo(targetDown); SmartDashboard.putString("Intake Position", "Down");}
+    else if (stowSup.getAsBoolean()) {intake.intakeRotateTo(targetStow); SmartDashboard.putString("Intake Position", "Stow");}
   }
 
   // Called once the command ends or is interrupted.

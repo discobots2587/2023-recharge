@@ -111,13 +111,27 @@ public final class Constants {
   public static final class ArmConstants{
     public static final int ARM_DRIVER_ID = 50;
     public static final int ARM_INTAKE_ID = 51;
+    public static final int ARM_LIM_SWITCH_PORT = 0;
 
     public static final double ARM_kP = 0.1;
     public static final double ARM_kI = 0.0;
     public static final double ARM_kD = 0.0;
 
-    public static final double ENCODER_DEG_UP = -57;
-    public static final double ENCODER_DEG_MID = -23.5;
+    public static final double ENCODER_ROT_UP = -57;
+    public static final double ENCODER_ROT_MID = -23.5;
+    // public static final int ARM_PIVOT_ID = 24;
+  }
+  public static final class IntakeConstants{
+    public static final int INTAKE_DRIVER_ID = 60;
+    public static final int INTAKE_INTAKE_ID = 61;
+    public static final int INTAKE_LIM_SWITCH_PORT = 1;
+
+    public static final double INTAKE_kP = 0.05;
+    public static final double INTAKE_kI = 0.0;
+    public static final double INTAKE_kD = 0.0;
+
+    public static final double ENCODER_ROT_DOWN = -14.0; // TUNE THIS
+    public static final double ENCODER_ROT_STOW = -1; // TUNE THIS
     // public static final int ARM_PIVOT_ID = 24;
   }
 
