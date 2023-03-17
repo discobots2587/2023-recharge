@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-import frc.lib.drivers.EForwardableConnections;
-import frc.lib.drivers.Launchpad;
-import frc.lib.drivers.LaunchpadButton;
 import frc.robot.Constants.IOConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.SwerveDrive;
@@ -17,9 +14,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ArmMove;
+import frc.robot.commands.ArmZero;
+import frc.robot.commands.IntakeMove;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Intake;
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -33,11 +38,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain drivetrain = Drivetrain.getInstance();
-  public static final Arm arm = Arm.getInstance();
+  //public static final Arm arm = Arm.getInstance();
+  public static final Intake intake = new Intake();
+  public static final Arm arm = new Arm();
+  public static final PowerDistribution pdh = Constants.PDH;
+  public final ArmMove armMove;
+  // public final IntakeMove intakeMove;
 
-  public static final PowerDistribution pdh = new PowerDistribution(Constants.PDH_ID, ModuleType.kRev);
-
-  private SendableChooser<String> autoChooser = new SendableChooser<>();
 
   public static final XboxController driverController = new XboxController(IOConstants.DRIVER_CONTROLLER_PORT);
   private final JoystickButton resetHeading_Start = new JoystickButton(driverController, XboxController.Button.kA.value);
@@ -59,11 +66,25 @@ public class RobotContainer {
   private final JoystickButton armUp_Y = new JoystickButton(backupOpController, XboxController.Button.kY.value);
   private final JoystickButton armDown_A = new JoystickButton(backupOpController, XboxController.Button.kA.value);
   private final JoystickButton armSubs_X = new JoystickButton(backupOpController, XboxController.Button.kX.value);
+  private final JoystickButton Intake_ON_LB = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton Intake_OFF_RB = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+
+  // private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
+  private final JoystickButton ARM_UP = new JoystickButton(driverController, XboxController.Button.kX.value);
+  private final JoystickButton ARM_Mid = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton ARM_STOW = new JoystickButton(driverController, XboxController.Button.kB.value);
+  
+  private final JoystickButton INTAKE_DOWN = new JoystickButton(driverController, XboxController.Button.kA.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
+  public RobotContainer()
+  {
+    armMove = new ArmMove(arm, () -> ARM_UP.getAsBoolean(), () -> ARM_Mid.getAsBoolean(), () -> ARM_STOW.getAsBoolean()); 
+    // intakeMove = new IntakeMove(intake, () -> INTAKE_DOWN.getAsBoolean(), () -> INTAKE_STOW.getAsBoolean());
+    
+    // arm.armEncZero();
+    // intake.intakeEncZero();
     // Configure the trigger bindings
-    portForwarding();
     configureBindings();
     drivetrain.setDefaultCommand(new SwerveDrive());
 
@@ -79,6 +100,10 @@ public class RobotContainer {
     autoChooser.addOption("DriveBack", "DriveBack");
     autoChooser.addOption("SimpleTest", "SimpleTest");
   }
+    // intake.setDefaultCommand(new IntakeHold());
+    // arm.setDefaultCommand(armMove);
+    // intake.setDefaultCommand(intakeMove);
+                                                                                                                              
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
@@ -97,12 +122,16 @@ public class RobotContainer {
     // gridDriveMode_A.whileTrue(new RunCommand(() -> drivetrain.setGridMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
     subsDriveMode_Y.whileTrue(new RunCommand(() -> drivetrain.setSubsMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
 
+    //Intaking and outtaking
+    Intake_ON_LB.onTrue(new InstantCommand(() -> arm.pickUp()));
+    Intake_ON_LB.onTrue(new InstantCommand(() -> intake.groundPickUp()));
+    Intake_ON_LB.onFalse(new InstantCommand(() -> arm.intakeStop()));
+    Intake_ON_LB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
 
-    armHigh_1_0.onTrue(new InstantCommand(() -> arm.setHighMode()));
-    armMid_2_0.onTrue(new InstantCommand(() -> arm.setMidMode()));
-    armLow_3_0.onTrue(new InstantCommand(() -> arm.setLowMode()));
-    armZero_4_0.onTrue(new InstantCommand(() -> arm.setZeroMode()));
-    armSubs_2_1.onTrue(new InstantCommand(() -> arm.setSubsMode()));
+    Intake_OFF_RB.onTrue(new InstantCommand(() -> arm.outtake()));
+    Intake_OFF_RB.onTrue(new InstantCommand(() -> intake.groundOuttake()));
+    Intake_OFF_RB.onFalse(new InstantCommand(() -> arm.intakeStop()));
+    Intake_OFF_RB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
 
     armAdjustUp_1_3.onTrue(new InstantCommand(() -> arm.armAdjustUp()));
     armAdjustDown_2_3.onTrue(new InstantCommand(() -> arm.armAdjustDown()));
@@ -110,6 +139,12 @@ public class RobotContainer {
     armUp_Y.onTrue(new InstantCommand(() -> arm.armUp()));
     armDown_A.onTrue(new InstantCommand(() -> arm.armDown()));
     armSubs_X.onTrue(new InstantCommand(() -> arm.setSubsMode()));
+    //Intake up and down Neo Control
+    INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
+    INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
+    
+    //Arm Zero
+    // ZERO_ARM.onTrue(new ArmZero());
   }
 
   /**
