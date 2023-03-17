@@ -57,9 +57,10 @@ public final class Constants {
     public static final double TURN_MOTOR_PCONVERSION = 2 * Math.PI / TURN_MOTOR_GEAR_RATIO;
     public static final double DRIVE_MOTOR_VCONVERSION = DRIVE_MOTOR_PCONVERSION / 60.0;
     public static final double TURN_MOTOR_VCONVERSION = TURN_MOTOR_PCONVERSION / 60.0;
-    public static final double KP_TURNING = 0.5;
+    
+    public static final double KP_TURNING = 0.75;
 
-    public static final double DRIVETRAIN_MAX_SPEED = 4.0;
+    public static final double DRIVETRAIN_MAX_SPEED = 4.6;
     public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
 
     //Teleop constraints

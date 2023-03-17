@@ -36,8 +36,6 @@ public class SwerveModule extends SubsystemBase {
   private boolean absoluteEncoderReversed;
   private double absoluteEncoderOffset;
 
-  private Rotation2d lastAngle;
-
   /** Creates a new SwerveModule. */
   public SwerveModule(int driveMotorId, int turnMotorId, boolean driveMotorReversed, boolean turnMotorReversed,
    int threncID, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
@@ -48,7 +46,7 @@ public class SwerveModule extends SubsystemBase {
       absoluteEncoder = new AnalogEncoder(input);
 
       driveMotor = new PearadoxSparkMax(driveMotorId, MotorType.kBrushless, IdleMode.kCoast, 45, driveMotorReversed);
-      turnMotor = new PearadoxSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kCoast, 25, turnMotorReversed);
+      turnMotor = new PearadoxSparkMax(turnMotorId, MotorType.kBrushless, IdleMode.kBrake, 25, turnMotorReversed);
 
       driveEncoder = driveMotor.getEncoder();
       turnEncoder = turnMotor.getEncoder();
@@ -57,7 +55,6 @@ public class SwerveModule extends SubsystemBase {
       turnPIDController.enableContinuousInput(-Math.PI, Math.PI);
 
       resetEncoders();
-      lastAngle = getState().angle;
   }
 
   @Override
@@ -75,6 +72,13 @@ public class SwerveModule extends SubsystemBase {
       turnMotor.setIdleMode(IdleMode.kCoast);
     }
   }
+
+  private static double coterminal(double rot) {
+    final double full = Math.signum(rot) *2 * Math.PI;
+    while(rot > Math.PI || rot < - Math.PI) rot -= full;
+    return rot;
+
+  }
   
   public double getDriveMotorPosition(){
     return driveEncoder.getPosition() * SwerveConstants.DRIVE_MOTOR_PCONVERSION;
@@ -85,7 +89,7 @@ public class SwerveModule extends SubsystemBase {
   }
 
   public double getTurnMotorPosition(){
-    return turnEncoder.getPosition() * SwerveConstants.TURN_MOTOR_PCONVERSION;
+    return coterminal(turnEncoder.getPosition() * SwerveConstants.TURN_MOTOR_PCONVERSION);
   }
 
   public double getTurnMotorVelocity(){
@@ -120,11 +124,16 @@ public class SwerveModule extends SubsystemBase {
     setSpeed(desiredState);
     
     SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] State", getState().toString());
+    SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] Desired State", desiredState.toString());
+
     SmartDashboard.putNumber("Swerve " + driveMotor.getDeviceId() + " Abs Encoder", getAbsoluteEncoderAngle());
   }
 
   public void setSpeed(SwerveModuleState desiredState){
     driveMotor.set(desiredState.speedMetersPerSecond / SwerveConstants.DRIVETRAIN_MAX_SPEED);
+    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] smps", desiredState.speedMetersPerSecond);
+    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] max speed", SwerveConstants.DRIVETRAIN_MAX_SPEED);
+    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] speed", desiredState.speedMetersPerSecond / SwerveConstants.DRIVETRAIN_MAX_SPEED);
 
     // driveController.setReference(
     //   desiredState.speedMetersPerSecond,
@@ -134,10 +143,10 @@ public class SwerveModule extends SubsystemBase {
   }
 
   public void setAngle(SwerveModuleState desiredState){
-    Rotation2d angle = (Math.abs(desiredState.speedMetersPerSecond) <= (SwerveConstants.DRIVETRAIN_MAX_SPEED * 0.01)) ? lastAngle : desiredState.angle; //Prevent rotating module if speed is less then 1%. Prevents Jittering.
+   // Rotation2d angle = (Math.abs(desiredState.speedMetersPerSecond) <= (SwerveConstants.DRIVETRAIN_MAX_SPEED * 0.01)) ? lastAngle : desiredState.angle; //Prevent rotating module if speed is less then 1%. Prevents Jittering.
     
     turnMotor.set(turnPIDController.calculate(getTurnMotorPosition(), desiredState.angle.getRadians()));
-    lastAngle = angle;
+    // lastAngle = angle;
   }
   
   public void stop(){

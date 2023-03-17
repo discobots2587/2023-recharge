@@ -24,6 +24,7 @@ import frc.robot.Constants.SwerveConstants;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends SubsystemBase {
   private SwerveModule leftFront = new SwerveModule(
@@ -115,42 +116,43 @@ public class Drivetrain extends SubsystemBase {
       turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
 
-    double turnSpeed;
-    if(headingControl){
-      if(turnX == 0 && turnY == 0){
-        turnSpeed = 0;
-      }
-      else{
-        double error = getJoystickAngle(turnX, turnY) - getHeading();
+    // double turnSpeed;
+    // if(headingControl){
+    //   if(turnX == 0 && turnY == 0){
+    //     turnSpeed = 0;
+    //   }
+    //   else{
+    //     double error = getJoystickAngle(turnX, turnY) - getHeading();
     
-        if(error > 180) {
-          error -= 360;
-        }
-        else if(error < -180){
-          error += 360;
-        }
+    //     if(error > 180) {
+    //       error -= 360;
+    //     }
+    //     else if(error < -180){
+    //       error += 360;
+    //     }
     
-        if(Math.abs(error) > 1){
-          turnSpeed = Math.signum(error) * SwerveConstants.kS_PERCENT + SwerveConstants.kP_PERCENT * error;
-        }
-        else{
-          turnSpeed = 0;
-        }
-      }
-    }
-    else{
-      turnSpeed = -turnX;
-    }
+    //     if(Math.abs(error) > 1){
+    //       turnSpeed = Math.signum(error) * SwerveConstants.kS_PERCENT + SwerveConstants.kP_PERCENT * error;
+    //     }
+    //     else{
+    //       turnSpeed = 0;
+    //     }
+    //   }
+    // }
+    // else{
+    double turnSpeed = -turnX;
+    // }
 
-    frontSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? frontSpeed * 0.45 : frontSpeed;
-    sideSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? sideSpeed * 0.45 : sideSpeed;
-    turnSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? turnSpeed * 0.45 : turnSpeed;
+    // frontSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? frontSpeed * 0.45 : frontSpeed;
+    // sideSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? sideSpeed * 0.45 : sideSpeed;
+    // turnSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? turnSpeed * 0.45 : turnSpeed;
 
     frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
     sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
     turnSpeed = turnLimiter.calculate(turnSpeed) * SwerveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED;
 
     ChassisSpeeds chassisSpeeds;
+    SmartDashboard.putString("drive heading", getHeadingRotation2d().toString());
     if(fieldOriented){
       chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(frontSpeed, sideSpeed, turnSpeed, getHeadingRotation2d());
     }
@@ -203,7 +205,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public double getHeading(){
-    return Math.IEEEremainder(gyro.getYaw(), 360);
+    return Math.IEEEremainder(-gyro.getYaw(), 360);
   }
 
   public Rotation2d getHeadingRotation2d(){

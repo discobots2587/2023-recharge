@@ -57,13 +57,13 @@ public class RobotContainer {
   private SendableChooser<String> autoChooser = new SendableChooser<>();
 
   public static final XboxController driverController = new XboxController(IOConstants.DRIVER_CONTROLLER_PORT);
-  private final JoystickButton resetHeading_Start = new JoystickButton(driverController, XboxController.Button.kStart.value);
+  private final JoystickButton resetHeading_Start = new JoystickButton(driverController, XboxController.Button.kA.value);
   private final JoystickButton toggleIntake_LB = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
   private final JoystickButton shoot_RB = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
   private final JoystickButton armScore_B = new JoystickButton(driverController, XboxController.Button.kB.value);
   private final JoystickButton outtake_X = new JoystickButton(driverController, XboxController.Button.kX.value);
   private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
-  private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
+  // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
   
   public static final Launchpad opController = new Launchpad();
   // private final LaunchpadButton[][] gridButtons = new LaunchpadButton[3][9];
@@ -133,7 +133,7 @@ public class RobotContainer {
       .andThen(new InstantCommand(() -> shooter.shooterOff())));
     armScore_B.whileTrue(new RunCommand(() -> arm.intakeOut())).onFalse(new InstantCommand(() -> arm.intakeIn()));
     outtake_X.whileTrue(new Outtake()).onFalse(new InstantCommand(() -> transport.feederStop()));
-    gridDriveMode_A.whileTrue(new RunCommand(() -> drivetrain.setGridMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
+    // gridDriveMode_A.whileTrue(new RunCommand(() -> drivetrain.setGridMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
     subsDriveMode_Y.whileTrue(new RunCommand(() -> drivetrain.setSubsMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
 
 
