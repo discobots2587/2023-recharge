@@ -25,8 +25,8 @@ public class SwerveDrive extends CommandBase {
   public void execute() {
     if(RobotContainer.drivetrain.getDriveMode() == RobotContainer.drivetrain.getGridMode()){
       RobotContainer.drivetrain.swerveDrive(
-        -RobotContainer.driverController.getLeftY(), 
-        -RobotContainer.driverController.getLeftX(), 
+        RobotContainer.driverController.getLeftY(), 
+        RobotContainer.driverController.getLeftX(), 
         1,
         0,
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
@@ -35,8 +35,8 @@ public class SwerveDrive extends CommandBase {
     }
     else if(RobotContainer.drivetrain.getDriveMode() == RobotContainer.drivetrain.getSubsMode()){
       RobotContainer.drivetrain.swerveDrive(
-        -RobotContainer.driverController.getLeftY(), 
-        -RobotContainer.driverController.getLeftX(), 
+        RobotContainer.driverController.getLeftY(), 
+        RobotContainer.driverController.getLeftX(), 
         -1,
         0,
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
@@ -45,8 +45,8 @@ public class SwerveDrive extends CommandBase {
     }
     else{
       RobotContainer.drivetrain.swerveDrive(
-        -RobotContainer.driverController.getLeftY(), 
-        -RobotContainer.driverController.getLeftX(), 
+        RobotContainer.driverController.getLeftY(), 
+        RobotContainer.driverController.getLeftX(), 
         RobotContainer.driverController.getRightX(),
         -RobotContainer.driverController.getRightY(),
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
