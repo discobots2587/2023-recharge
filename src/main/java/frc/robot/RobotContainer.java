@@ -52,8 +52,8 @@ public class RobotContainer {
     armMove = new ArmMove(arm, () -> ARM_UP.getAsBoolean(), () -> ARM_Mid.getAsBoolean(), () -> ARM_STOW.getAsBoolean()); 
     // intakeMove = new IntakeMove(intake, () -> INTAKE_DOWN.getAsBoolean(), () -> INTAKE_STOW.getAsBoolean());
     
-    arm.armEncZero();
-    intake.intakeEncZero();
+    // arm.armEncZero();
+    // intake.intakeEncZero();
     // Configure the trigger bindings
     configureBindings();
     // intake.setDefaultCommand(new IntakeHold());

@@ -39,7 +39,7 @@ public class ArmMove extends CommandBase {
   public void initialize()
   {
     targetHigh = Constants.ArmConstants.ENCODER_ROT_UP;
-    targetMid = Constants.ArmConstants.ENCODER_ROT_UP;
+    targetMid = Constants.ArmConstants.ENCODER_ROT_MID;
     targetStow = 0;
   }
 
