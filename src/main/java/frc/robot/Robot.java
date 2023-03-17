@@ -6,11 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.IntakeHold;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -80,7 +78,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     RobotContainer.pdh.setSwitchableChannel(true);
-    RobotContainer.intake.setDefaultCommand(new IntakeHold());
   }
 
   /** This function is called periodically during autonomous. */
@@ -98,21 +95,14 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     RobotContainer.drivetrain.resetAllEncoders();
-    RobotContainer.shooter.shooterOff();
+    // RobotContainer.shooter.shooterOff();
     RobotContainer.pdh.setSwitchableChannel(true);
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if(RobotContainer.arm.isDeployed() ? 
-        (RobotContainer.intake.isDeployed() || RobotContainer.bigStick.isDeployed()) : 
-        (RobotContainer.intake.isDeployed() && RobotContainer.bigStick.isDeployed())){
-      RobotContainer.driverController.setRumble(RumbleType.kBothRumble, 1);
-    }
-    else{
-      RobotContainer.driverController.setRumble(RumbleType.kBothRumble, 0);
-    }
+    
   }
 
   @Override
