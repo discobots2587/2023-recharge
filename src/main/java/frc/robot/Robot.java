@@ -53,10 +53,10 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    SmartDashboard.putNumber("Front Left", m_robotContainer.drivetrain.getleftFront().getAbsoluteEncoder().getAbsolutePosition());   //Front right
-    SmartDashboard.putNumber("Front Right", m_robotContainer.drivetrain.getrightFront().getAbsoluteEncoder().getAbsolutePosition()); //Front left
-    SmartDashboard.putNumber("Back Left", m_robotContainer.drivetrain.getrightBack().getAbsoluteEncoder().getAbsolutePosition());    //Back right
-    SmartDashboard.putNumber("Back Right", m_robotContainer.drivetrain.getleftBack().getAbsoluteEncoder().getAbsolutePosition());    //Back left
+    SmartDashboard.putNumber("Front Left", RobotContainer.drivetrain.getleftFront().getAbsoluteEncoder().getAbsolutePosition());   //Front right
+    SmartDashboard.putNumber("Front Right", RobotContainer.drivetrain.getrightFront().getAbsoluteEncoder().getAbsolutePosition()); //Front left
+    SmartDashboard.putNumber("Back Left", RobotContainer.drivetrain.getrightBack().getAbsoluteEncoder().getAbsolutePosition());    //Back right
+    SmartDashboard.putNumber("Back Right", RobotContainer.drivetrain.getleftBack().getAbsoluteEncoder().getAbsolutePosition());    //Back left
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -105,7 +105,7 @@ public class RobotContainer {
     bigStick.setDefaultCommand(new BigStickHold());
 
     SmartDashboard.putData("Auton Chooser", autoChooser);
-    autoChooser.setDefaultOption("1CubeM_Bal", "1CubeM_Bal");
+    autoChooser.setDefaultOption("SimpleTest", "SimpleTest");
     autoChooser.addOption("2CubeNC", "2CubeNC");
     autoChooser.addOption("2CubeNC_Bal", "2CubeNC_Bal");
     autoChooser.addOption("3CubeNC_Bal", "3CubeNC_Bal");
@@ -170,17 +170,15 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    if(autoChooser.getSelected().equals("1CubeM_Bal")){
-      drivetrain.resetAllEncoders();
-      drivetrain.setHeading(0);
-      return Autos.c1C0_M_Bal();
-    }
-    else if(autoChooser.getSelected().equals("SimpleTest")) {
+    if(autoChooser.getSelected().equals("SimpleTest")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.SimpleTest();
-    }
-    else if(autoChooser.getSelected().equals("2CubeNC")){
+    } else if(autoChooser.getSelected().equals("1CubeM_Bal")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.c1C0_M_Bal();
+    } else if(autoChooser.getSelected().equals("2CubeNC")){
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.c2C0_NC();

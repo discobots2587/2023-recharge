@@ -29,7 +29,6 @@ public final class Autos {
   private static PIDController sideController = new PIDController(SwerveConstants.AUTO_kP_SIDE, 0, 0);
   private static PIDController turnController = new PIDController(SwerveConstants.AUTO_kP_TURN, 0, 0);
 
-  
   public static CommandBase SimpleTest() {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("SimpleTest", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
@@ -44,7 +43,6 @@ public final class Autos {
     );
   }
   
-
   /** Example static factory for an autonomous command. */ 
   public static CommandBase c1C0_M_Bal() {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("c1C0_M_Bal", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
