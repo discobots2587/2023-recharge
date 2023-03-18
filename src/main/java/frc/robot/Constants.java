@@ -115,12 +115,12 @@ public final class Constants {
     public static final int ARM_INTAKE_ID = 51;
     public static final int ARM_LIM_SWITCH_PORT = 0;
 
-    public static final double ARM_kP = 0.15;
-    public static final double ARM_kI = 0.0;
+    public static final double ARM_kP = 0.05; //0.25
+    public static final double ARM_kI = 0; //0.0001
     public static final double ARM_kD = 0.0;
 
-    public static final double ENCODER_ROT_UP = -57;
-    public static final double ENCODER_ROT_MID = -23.5;
+    public static final double ENCODER_ROT_UP = -56;
+    public static final double ENCODER_ROT_MID = -30;
     // public static final int ARM_PIVOT_ID = 24;
   }
   public static final class IntakeConstants{
@@ -135,45 +135,5 @@ public final class Constants {
     public static final double ENCODER_ROT_DOWN = -14.0; // TUNE THIS
     public static final double ENCODER_ROT_STOW = 0; // TUNE THIS
     // public static final int ARM_PIVOT_ID = 24;
-  }
-
-  public static final class ShooterConstants{
-    public static final int TOP_SHOOTER_ID = 52;
-    public static final int BOT_SHOOTER_ID = 53;
-    public static final int FEEDER_ID = 54;
-
-    public static final int IR_SENSOR_ID = 0;
-
-    public static final double TOP_SHOOTER_kS = 0.062786;
-    public static final double TOP_SHOOTER_kV = 0.12905;
-    public static final double TOP_SHOOTER_kA = 0.011404;
-
-    public static final double TOP_SHOOTER_kP = 0.00035813;
-    public static final double TOP_SHOOTER_kI = 0;
-    public static final double TOP_SHOOTER_kD = 0.0005;
-
-    public static final double BOT_SHOOTER_kS = 0.11635;
-    public static final double BOT_SHOOTER_kV = 0.1291;
-    public static final double BOT_SHOOTER_kA = 0.012424;
-
-    public static final double BOT_SHOOTER_kP = 0.00036422;
-    public static final double BOT_SHOOTER_kI = 0;
-    public static final double BOT_SHOOTER_kD = 0;
-
-    public static final double SHOOTER_MIN_OUTPUT = -1.0;
-    public static final double SHOOTER_MAX_OUTPUT = 1.0;
-
-  }
-
-  public static final class BigStickConstants{
-    public static final int BIG_STICK_ID = 40;
-
-    public static final double PIVOT_kP = 0.1;
-    public static final double PIVOT_kI = 0;
-    public static final double PIVOT_kD = 0;
-    public static final double PIVOT_MIN_OUTPUT = -0.5;
-    public static final double PIVOT_MAX_OUTPUT = 0.5;
-
-    public static final double DEPLOYED_ROT = 7.4;
   }
 }

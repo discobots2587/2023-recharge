@@ -62,7 +62,9 @@ public class RobotContainer {
   private final JoystickButton ARM_STOW = new JoystickButton(OpController, XboxController.Button.kB.value);
   
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
+
   private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer()
@@ -119,8 +121,9 @@ public class RobotContainer {
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
     
-    //Zero intake encoder
+    //Zero encoders
     resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
+    resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
 
     //Arm Zero
     // ZERO_ARM.onTrue(new ArmZero());

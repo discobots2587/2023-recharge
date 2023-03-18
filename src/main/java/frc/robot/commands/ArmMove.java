@@ -40,7 +40,7 @@ public class ArmMove extends CommandBase {
   {
     targetHigh = Constants.ArmConstants.ENCODER_ROT_UP;
     targetMid = Constants.ArmConstants.ENCODER_ROT_MID;
-    targetStow = 0;
+    targetStow = -1;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
