@@ -45,7 +45,7 @@ public final class Autos {
     return new SequentialCommandGroup(
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
-      new WaitCommand(1),
+      new WaitCommand(1.70),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
