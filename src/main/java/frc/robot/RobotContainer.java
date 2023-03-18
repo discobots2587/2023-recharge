@@ -84,6 +84,7 @@ public class RobotContainer {
     autoChooser.addOption("DriveBack", "DriveBack");
     autoChooser.addOption("SimpleTest", "SimpleTest");
     autoChooser.addOption("MobilityBonus", "MobilityBonus");
+    autoChooser.addOption("Balance", "Balance");
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -144,6 +145,10 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.SimpleTest();
+    } else if(autoChooser.getSelected().equals("Balance")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.Balance();
     } else {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);

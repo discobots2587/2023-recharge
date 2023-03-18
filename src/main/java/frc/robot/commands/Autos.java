@@ -49,6 +49,21 @@ public final class Autos {
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
+
+  public static CommandBase Balance() {
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("Balance", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+
+    PPSwerveControllerCommand driveOnCS = makeSwerveControllerCommand(trajectory);
+
+    return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
+      new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
+      new WaitCommand(3),
+      driveOnCS,
+      new AutoBalance(),
+      new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
+    );
+  }
   
 
   public static CommandBase driveBack() {
