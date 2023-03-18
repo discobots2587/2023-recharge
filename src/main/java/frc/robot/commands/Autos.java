@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.SwerveConstants;
 
@@ -34,6 +35,17 @@ public final class Autos {
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
       driveOnCS,
       new AutoBalance(),
+      new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
+    );
+  }
+
+  public static CommandBase MobilityBonus() {
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("MobilityBonus", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+
+    return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
+      new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
+      new WaitCommand(1),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }

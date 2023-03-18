@@ -11,13 +11,13 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+// import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArmMove;
-import frc.robot.commands.ArmZero;
+// import frc.robot.commands.ArmZero;
 import frc.robot.commands.IntakeMove;
-import frc.robot.subsystems.Arm;
+// import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 // import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -77,16 +77,10 @@ public class RobotContainer {
     arm.setDefaultCommand(armMove);
 
     SmartDashboard.putData("Auton Chooser", autoChooser);
-    autoChooser.setDefaultOption("SimpleTest", "SimpleTest");
-    // autoChooser.addOption("2CubeNC", "2CubeNC");
-    // autoChooser.addOption("2CubeNC_Bal", "2CubeNC_Bal");
-    // autoChooser.addOption("3CubeNC_Bal", "3CubeNC_Bal");
-    // autoChooser.addOption("4CubeNC", "4CubeNC");
-    // autoChooser.addOption("1Cone1CubeNC_Bal", "1Cone1CubeNC_Bal");
-    // autoChooser.addOption("1Cone1CubeC_Bal", "1Cone1CubeC_Bal");
-    // autoChooser.addOption("Nothing", "TestAuto");
-    // autoChooser.addOption("DriveBack", "DriveBack");
+    autoChooser.setDefaultOption("MobilityBonus", "MobilityBonus");
+    autoChooser.addOption("DriveBack", "DriveBack");
     autoChooser.addOption("SimpleTest", "SimpleTest");
+    autoChooser.addOption("MobilityBonus", "MobilityBonus");
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -135,11 +129,15 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    if(autoChooser.getSelected().equals("SimpleTest")) {
+    if(autoChooser.getSelected().equals("MobilityBonus")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.MobilityBonus();
+    } else if(autoChooser.getSelected().equals("SimpleTest")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.SimpleTest();
-    } else{
+    } else {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.driveBack();
