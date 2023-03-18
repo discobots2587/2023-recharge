@@ -53,13 +53,13 @@ public class RobotContainer {
   private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
 
-  private final JoystickButton Intake_ON_LB = new JoystickButton(driverController, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton Intake_OFF_RB = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
+  private final JoystickButton Intake_ON_LB = new JoystickButton(OpController, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton Intake_OFF_RB = new JoystickButton(OpController, XboxController.Button.kRightBumper.value);
 
   // private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
-  private final JoystickButton ARM_UP = new JoystickButton(driverController, XboxController.Button.kX.value);
-  private final JoystickButton ARM_Mid = new JoystickButton(driverController, XboxController.Button.kY.value);
-  private final JoystickButton ARM_STOW = new JoystickButton(driverController, XboxController.Button.kB.value);
+  private final JoystickButton ARM_UP = new JoystickButton(OpController, XboxController.Button.kX.value);
+  private final JoystickButton ARM_Mid = new JoystickButton(OpController, XboxController.Button.kY.value);
+  private final JoystickButton ARM_STOW = new JoystickButton(OpController, XboxController.Button.kB.value);
   
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kA.value);
 
