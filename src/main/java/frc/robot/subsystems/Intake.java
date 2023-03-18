@@ -29,7 +29,7 @@ public class Intake extends SubsystemBase {
   /** Creates a new IntakeRollers. */
   public Intake() {
     driver = new CANSparkMax(60, MotorType.kBrushless);
-    driver.setIdleMode(IdleMode.kCoast);
+    driver.setIdleMode(IdleMode.kBrake);
     intakeEncoder = driver.getEncoder();
 
     wheels = new VictorSPX(61);

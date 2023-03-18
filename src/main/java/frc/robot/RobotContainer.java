@@ -23,7 +23,7 @@ import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.RunCommand;
+// import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -50,7 +50,7 @@ public class RobotContainer {
   public static final XboxController OpController = new XboxController(IOConstants.OP_CONTROLLER_PORT);
 
   private final JoystickButton resetHeading_Start = new JoystickButton(driverController, XboxController.Button.kA.value);
-  private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
+  // private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
 
   private final JoystickButton Intake_ON_LB = new JoystickButton(OpController, XboxController.Button.kLeftBumper.value);
@@ -58,10 +58,11 @@ public class RobotContainer {
 
   // private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
   private final JoystickButton ARM_UP = new JoystickButton(OpController, XboxController.Button.kX.value);
-  private final JoystickButton ARM_Mid = new JoystickButton(OpController, XboxController.Button.kY.value);
+  private final JoystickButton ARM_Mid = new JoystickButton(OpController, XboxController.Button.kA.value);
   private final JoystickButton ARM_STOW = new JoystickButton(OpController, XboxController.Button.kB.value);
   
-  private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kA.value);
+  private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
+  private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer()
@@ -101,7 +102,7 @@ public class RobotContainer {
     // shoot_RB.whileTrue(new Shoot(0.75)).onFalse(new InstantCommand(() -> transport.feederStop())
     //   .andThen(new InstantCommand(() -> shooter.shooterOff())));
     // gridDriveMode_A.whileTrue(new RunCommand(() -> drivetrain.setGridMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
-    subsDriveMode_Y.whileTrue(new RunCommand(() -> drivetrain.setSubsMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
+    // subsDriveMode_Y.whileTrue(new RunCommand(() -> drivetrain.setSubsMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
 
     //Intaking and outtaking
     Intake_ON_LB.onTrue(new InstantCommand(() -> arm.pickUp()));
@@ -118,6 +119,9 @@ public class RobotContainer {
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
     
+    //Zero intake encoder
+    resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
+
     //Arm Zero
     // ZERO_ARM.onTrue(new ArmZero());
   }

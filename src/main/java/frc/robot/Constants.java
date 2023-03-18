@@ -24,8 +24,8 @@ public final class Constants {
   public static final PowerDistribution PDH = new PowerDistribution(Constants.PDH_ID, ModuleType.kRev);
 
   public static class IOConstants {
-    public static final int DRIVER_CONTROLLER_PORT = 0;
-    public static final int OP_CONTROLLER_PORT = 1;
+    public static final int DRIVER_CONTROLLER_PORT = 1;
+    public static final int OP_CONTROLLER_PORT = 0;
   }
 
   public static final class SwerveConstants{
@@ -115,7 +115,7 @@ public final class Constants {
     public static final int ARM_INTAKE_ID = 51;
     public static final int ARM_LIM_SWITCH_PORT = 0;
 
-    public static final double ARM_kP = 0.1;
+    public static final double ARM_kP = 0.15;
     public static final double ARM_kI = 0.0;
     public static final double ARM_kD = 0.0;
 
@@ -133,7 +133,7 @@ public final class Constants {
     public static final double INTAKE_kD = 0.0;
 
     public static final double ENCODER_ROT_DOWN = -14.0; // TUNE THIS
-    public static final double ENCODER_ROT_STOW = -1; // TUNE THIS
+    public static final double ENCODER_ROT_STOW = 0; // TUNE THIS
     // public static final int ARM_PIVOT_ID = 24;
   }
 

@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.schedule();
     }
     RobotContainer.pdh.setSwitchableChannel(true);
+    RobotContainer.intake.intakeEncZero();
   }
 
   /** This function is called periodically during autonomous. */
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoders();
     // RobotContainer.shooter.shooterOff();
     RobotContainer.pdh.setSwitchableChannel(true);
+    RobotContainer.intake.intakeEncZero();
   }
 
   /** This function is called periodically during operator control. */
