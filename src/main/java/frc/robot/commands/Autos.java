@@ -65,6 +65,19 @@ public final class Autos {
     );
   }
   
+  public static CommandBase cubeAndDrive() {
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("Cube+Drive", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+
+    return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
+      new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
+      new InstantCommand(() -> RobotContainer.intake.groundOuttake()), 
+      new WaitCommand(0.2),
+      new InstantCommand(() -> RobotContainer.intake.groundIntakeStop()), 
+      new WaitCommand(1.70),
+      new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
+    );
+  }
 
   public static CommandBase driveBack() {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("DriveBack", SwerveConstants.AUTO_DRIVE_MAX_SPEED, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);

@@ -66,6 +66,8 @@ public class RobotContainer {
   private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
   private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
+  private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer()
   {
@@ -84,7 +86,8 @@ public class RobotContainer {
     autoChooser.addOption("DriveBack", "DriveBack");
     autoChooser.addOption("SimpleTest", "SimpleTest");
     autoChooser.addOption("MobilityBonus", "MobilityBonus");
-    autoChooser.addOption("Balance", "Balance");
+    autoChooser.addOption("Balance(NEEDS TUNING)", "Balance");
+    autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -126,6 +129,10 @@ public class RobotContainer {
     resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
     resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
 
+    //Lock wheels
+    lockWheels.onTrue(new InstantCommand(() -> drivetrain.formX()));
+    lockWheels.onTrue(new InstantCommand(() -> drivetrain.stopModules()));
+
     //Arm Zero
     // ZERO_ARM.onTrue(new ArmZero());
   }
@@ -149,6 +156,10 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.Balance();
+    } else if(autoChooser.getSelected().equals("Cube+Drive")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.cubeAndDrive();
     } else {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
