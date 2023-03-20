@@ -82,12 +82,12 @@ public class RobotContainer {
     arm.setDefaultCommand(armMove);
 
     SmartDashboard.putData("Auton Chooser", autoChooser);
-    autoChooser.setDefaultOption("MobilityBonus", "MobilityBonus");
+    autoChooser.setDefaultOption("Drive", "Drive");                   //Default auton
     autoChooser.addOption("DriveBack", "DriveBack");
-    autoChooser.addOption("SimpleTest", "SimpleTest");
-    autoChooser.addOption("MobilityBonus", "MobilityBonus");
-    autoChooser.addOption("Balance(NEEDS TUNING)", "Balance");
-    autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");
+    autoChooser.addOption("SimpleTest", "SimpleTest");                //Drives straight (testing only)
+    autoChooser.addOption("Drive", "Drive");                          //Drives out of community (3 points // loading side zone)
+    autoChooser.addOption("Balance(NEEDS TUNING)", "Balance");        //Drives and balances on charge station (12 points // charging station zone)
+    autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");      //Outtakes game piece into hybrid node and drives out of community (6 points // loading side zone)
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -144,10 +144,10 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    if(autoChooser.getSelected().equals("MobilityBonus")) {
+    if(autoChooser.getSelected().equals("Drive")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
-      return Autos.MobilityBonus();
+      return Autos.Drive();
     } else if(autoChooser.getSelected().equals("SimpleTest")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);

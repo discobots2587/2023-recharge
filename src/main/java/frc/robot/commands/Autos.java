@@ -39,7 +39,7 @@ public final class Autos {
     );
   }
 
-  public static CommandBase MobilityBonus() {
+  public static CommandBase Drive() {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("MobilityBonus", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
     return new SequentialCommandGroup(
