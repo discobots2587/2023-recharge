@@ -44,6 +44,7 @@ public class Arm extends SubsystemBase {
     armController.setP(ArmConstants.ARM_kP);
     armController.setI(ArmConstants.ARM_kI);
     armController.setD(ArmConstants.ARM_kD);
+    armDrive.burnFlash();
   }
 
   public void pickUp()

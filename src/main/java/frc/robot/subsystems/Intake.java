@@ -32,9 +32,11 @@ public class Intake extends SubsystemBase {
     driver.setIdleMode(IdleMode.kBrake);
     driver.setSmartCurrentLimit(10, 25);
     intakeEncoder = driver.getEncoder();
+    
 
     wheels = new VictorSPX(61);
     wheels.setNeutralMode(NeutralMode.Brake);
+    
     
     intSw = new DigitalInput(IntakeConstants.INTAKE_LIM_SWITCH_PORT);
 
@@ -43,6 +45,7 @@ public class Intake extends SubsystemBase {
     intakeController.setP(IntakeConstants.INTAKE_kP);
     intakeController.setI(IntakeConstants.INTAKE_kI);
     intakeController.setD(IntakeConstants.INTAKE_kD);
+    driver.burnFlash();
   }
 
   public void groundPickUp()
