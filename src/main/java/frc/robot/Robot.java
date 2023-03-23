@@ -30,6 +30,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    RobotContainer.intake.intakeEncZero();
     // RobotContainer.pdh.setSwitchableChannel(false);
     // PortForwarder.add(8888, "limelight.local", 5800);
     // PortForwarder.add(8889, "limelight.local", 5801);
@@ -98,7 +99,6 @@ public class Robot extends TimedRobot {
     RobotContainer.drivetrain.resetAllEncoders();
     // RobotContainer.shooter.shooterOff();
     RobotContainer.pdh.setSwitchableChannel(true);
-    RobotContainer.intake.intakeEncZero();
   }
 
   /** This function is called periodically during operator control. */

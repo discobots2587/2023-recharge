@@ -81,8 +81,17 @@ public class Intake extends SubsystemBase {
 
   public void intakeRotateTo(double rotations)
   {
+    if(rotations > -10)
+    {
+      driver.setSmartCurrentLimit(40);
+    }
+    else
+    {
+      driver.setSmartCurrentLimit(15, 25);
+    }
     // double rotations = degrees/360.0;
     intakeController.setReference(rotations, CANSparkMax.ControlType.kPosition);
+    
   };
 
   public boolean getHomeSwitch()

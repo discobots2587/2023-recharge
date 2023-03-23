@@ -46,8 +46,14 @@ public class IntakeMove extends CommandBase
   @Override
   public void execute()
   {
-    if (downSup.getAsBoolean()) {intake.intakeRotateTo(targetDown); SmartDashboard.putString("Intake Position", "Down");}
-    else if (stowSup.getAsBoolean()) {intake.intakeRotateTo(targetStow); SmartDashboard.putString("Intake Position", "Stow");}
+    if (downSup.getAsBoolean())
+    {
+      intake.intakeRotateTo(targetDown); SmartDashboard.putString("Intake Position", "Down");
+    }
+    else if (stowSup.getAsBoolean())
+    {
+      intake.intakeRotateTo(targetStow); SmartDashboard.putString("Intake Position", "Stow");
+    }
   }
 
   // Called once the command ends or is interrupted.
