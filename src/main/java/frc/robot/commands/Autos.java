@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
  
+import java.time.Instant;
+
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
@@ -31,6 +33,7 @@ public final class Autos {
     PPSwerveControllerCommand driveOnCS = makeSwerveControllerCommand(trajectory);
 
     return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.intake.groundOuttake()),
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
       driveOnCS,
@@ -43,6 +46,7 @@ public final class Autos {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("MobilityBonus", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
     return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.intake.groundOuttake()),
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
       new WaitCommand(1.70),
