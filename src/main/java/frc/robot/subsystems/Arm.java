@@ -53,7 +53,7 @@ public class Arm extends SubsystemBase {
     // return false;
   }
   
-  public void outtake()
+  public void outtake() //outtake a cone
   {
     intake.set(ControlMode.PercentOutput, 100);
     // return false;

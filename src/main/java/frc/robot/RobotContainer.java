@@ -88,6 +88,7 @@ public class RobotContainer {
     autoChooser.addOption("Drive", "Drive");                          //Drives out of community (3 points // loading side zone)
     autoChooser.addOption("Balance(NEEDS TUNING)", "Balance");        //Drives and balances on charge station (12 points // charging station zone)
     autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");      //Outtakes game piece into hybrid node and drives out of community (6 points // loading side zone)
+    autoChooser.addOption("highNodeAndDrive", "highNodeAndDrive");    //()
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -111,12 +112,12 @@ public class RobotContainer {
     // subsDriveMode_Y.whileTrue(new RunCommand(() -> drivetrain.setSubsMode())).onFalse(new InstantCommand(() -> drivetrain.setNormalMode()));
 
     //Intaking and outtaking
-    Intake_ON_LB.onTrue(new InstantCommand(() -> arm.pickUp()));
-    Intake_ON_LB.onTrue(new InstantCommand(() -> intake.groundPickUp()));
+    Intake_ON_LB.onTrue(new InstantCommand(() -> arm.pickUp())); //intake cones, outtake cubes
+    Intake_ON_LB.onTrue(new InstantCommand(() -> intake.groundPickUp())); 
     Intake_ON_LB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     Intake_ON_LB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
 
-    Intake_OFF_RB.onTrue(new InstantCommand(() -> arm.outtake()));
+    Intake_OFF_RB.onTrue(new InstantCommand(() -> arm.outtake())); // intake cubes, outtake cones
     Intake_OFF_RB.onTrue(new InstantCommand(() -> intake.groundOuttake()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
@@ -160,6 +161,10 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.cubeAndDrive();
+    }  else if(autoChooser.getSelected().equals("highNodeAndDrive")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.highNodeAndDrive();
     } else {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
