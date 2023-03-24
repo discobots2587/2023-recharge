@@ -67,8 +67,8 @@ public final class Constants {
     public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
 
     //Teleop constraints
-    public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED * 0.6;
-    public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED / 1.75;
+    public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED * 1;
+    public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /1.75;
     public static final double TELE_DRIVE_MAX_ACCELERATION = 3;
     public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 3;
     public static final double deadbandValue = 0.1;
@@ -79,9 +79,9 @@ public final class Constants {
     public static final double AUTO_DRIVE_MAX_ACCELERATION = 3;
     public static final double AUTO_DRIVE_MAX_ANGULAR_ACCELERATION = Math.PI;
 
-    public static final double AUTO_kP_FRONT = 0.4;
+    public static final double AUTO_kP_FRONT = 0.4; //0.4
     public static final double AUTO_kP_SIDE = 0.4;
-    public static final double AUTO_kP_TURN = 2.4;
+    public static final double AUTO_kP_TURN = 0; //2.4
 
     //Swerve Kinematics
     public static final double TRACK_WIDTH = Units.inchesToMeters(16.75);

@@ -142,7 +142,7 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(){
-    PathPlannerTrajectory trajectory = PathPlanner.loadPath("test", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("highNodeAndBalance", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
     PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
 
