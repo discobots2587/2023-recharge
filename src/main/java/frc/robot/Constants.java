@@ -9,6 +9,14 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
+import static edu.wpi.first.math.util.Units.degreesToRadians;
+import static edu.wpi.first.math.util.Units.inchesToMeters;
 
 
 /**
@@ -136,4 +144,30 @@ public final class Constants {
     public static final double ENCODER_ROT_STOW = 0; // TUNE THIS
     // public static final int ARM_PIVOT_ID = 24;
   }
+  public static class VisionConstants {
+    // VisionConstants from FRC-7028 PhotonVision code
+
+    /** Physical location of the apriltag camera on the robot, relative to the center of the robot. */
+    // center of robot 10" forward of center, 1" left of center and 12" up from center of robot
+    public static final Translation3d camera1Translation = new Translation3d(Units.inchesToMeters(10.0), 
+    Units.inchesToMeters(1.0), Units.inchesToMeters(12.));// Cam mounted facing forward
+    public static final Rotation3d camera1Rotation = new Rotation3d(0,0,0); // pointing forward
+    public static final Transform3d APRILTAG_CAMERA_TO_ROBOT =
+              new Transform3d(
+                      camera1Translation,
+                      camera1Rotation); // transform camera1 from center of robot
+  
+
+    public static final double FIELD_LENGTH_METERS = 16.54175;
+    public static final double FIELD_WIDTH_METERS = 8.0137;
+
+    // Pose on the opposite side of the field. Use with `relativeTo` to flip a pose to the opposite alliance
+    public static final Pose2d FLIPPING_POSE = new Pose2d(
+        new Translation2d(FIELD_LENGTH_METERS, FIELD_WIDTH_METERS),
+        new Rotation2d(Math.PI));
+
+    /** Minimum target ambiguity. Targets with higher ambiguity will be discarded */
+    public static final double APRILTAG_AMBIGUITY_THRESHOLD = 0.2;
+  }
+
 }
