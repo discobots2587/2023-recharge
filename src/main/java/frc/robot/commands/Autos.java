@@ -118,7 +118,7 @@ public final class Autos {
       new InstantCommand(() -> RobotContainer.arm.armRotateTo(Constants.ArmConstants.ENCODER_ROT_UP)), 
       new WaitCommand(1.5),
       new InstantCommand(() -> RobotContainer.arm.pickUp()),
-      new WaitCommand(1.5), 
+      new WaitCommand(0.5), 
       new InstantCommand(() -> RobotContainer.arm.intakeStop()),
       new InstantCommand(() -> RobotContainer.arm.armRotateTo(0)), 
       new WaitCommand(1.5),
