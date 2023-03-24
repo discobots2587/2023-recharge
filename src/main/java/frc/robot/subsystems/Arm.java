@@ -49,13 +49,13 @@ public class Arm extends SubsystemBase {
 
   public void pickUp()
   {
-    intake.set(ControlMode.PercentOutput, -25); 
+    intake.set(ControlMode.PercentOutput, 25); 
     // return false;
   }
   
   public void outtake() //outtake a cone
   {
-    intake.set(ControlMode.PercentOutput, 100);
+    intake.set(ControlMode.PercentOutput, -100);
     // return false;
   }
 

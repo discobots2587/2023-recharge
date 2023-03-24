@@ -214,7 +214,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public double getRoll(){
-    return gyro.getRoll() + 0.92;
+    return -(gyro.getRoll()); //+ 0.92
   }
 
   public double getPitch(){
