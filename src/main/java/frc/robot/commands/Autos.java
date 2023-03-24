@@ -49,11 +49,10 @@ public final class Autos {
     PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
 
     return new SequentialCommandGroup(
-      new InstantCommand(() -> RobotContainer.intake.groundOuttake()),
+      // new InstantCommand(() -> RobotContainer.intake.groundOuttake()),
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
       move, 
-      new WaitCommand(1.70),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
@@ -61,20 +60,19 @@ public final class Autos {
   public static CommandBase Balance() {
     PathPlannerTrajectory trajectory = PathPlanner.loadPath("Balance", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
-    PPSwerveControllerCommand driveOnCS = makeSwerveControllerCommand(trajectory);
+    PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
 
     return new SequentialCommandGroup(
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
-      new WaitCommand(3),
-      driveOnCS,
+      move,
       new AutoBalance(),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
   
   public static CommandBase cubeAndDrive() {
-    PathPlannerTrajectory trajectory = PathPlanner.loadPath("Cube+Drive", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("cubeAndDrive", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
 
     PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
 
@@ -85,7 +83,6 @@ public final class Autos {
       new WaitCommand(2),
       new InstantCommand(() -> RobotContainer.intake.groundIntakeStop()), 
       move, 
-      new WaitCommand(2),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
@@ -99,14 +96,34 @@ public final class Autos {
       new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
       new InstantCommand(() -> RobotContainer.arm.armRotateTo(Constants.ArmConstants.ENCODER_ROT_UP)), 
-      new WaitCommand(1),
+      new WaitCommand(1.5),
       new InstantCommand(() -> RobotContainer.arm.pickUp()),
-      new WaitCommand(1), 
+      new WaitCommand(1.5), 
       new InstantCommand(() -> RobotContainer.arm.intakeStop()),
       new InstantCommand(() -> RobotContainer.arm.armRotateTo(0)), 
-      new WaitCommand(1),
+      new WaitCommand(1.5),
       move,
-      new WaitCommand(2),
+      new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
+    );
+  }
+
+  public static CommandBase highNodeAndBalance() {
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("highNodeAndBalance", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+
+    PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
+
+    return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
+      new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
+      new InstantCommand(() -> RobotContainer.arm.armRotateTo(Constants.ArmConstants.ENCODER_ROT_UP)), 
+      new WaitCommand(1.5),
+      new InstantCommand(() -> RobotContainer.arm.pickUp()),
+      new WaitCommand(1.5), 
+      new InstantCommand(() -> RobotContainer.arm.intakeStop()),
+      new InstantCommand(() -> RobotContainer.arm.armRotateTo(0)), 
+      new WaitCommand(1.5),
+      move,
+      new AutoBalance(),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
@@ -125,7 +142,15 @@ public final class Autos {
   }
 
   public static CommandBase testAuto(){
+    PathPlannerTrajectory trajectory = PathPlanner.loadPath("test", SwerveConstants.AUTO_DRIVE_MAX_SPEED / 2.25, SwerveConstants.AUTO_DRIVE_MAX_ACCELERATION);
+
+    PPSwerveControllerCommand move = makeSwerveControllerCommand(trajectory);
+
     return new SequentialCommandGroup(
+      new InstantCommand(() -> RobotContainer.drivetrain.resetOdometry(getInitialPose(trajectory))), 
+      new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
+      move,
+      new AutoBalance(),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }

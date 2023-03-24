@@ -89,6 +89,8 @@ public class RobotContainer {
     autoChooser.addOption("Balance(NEEDS TUNING)", "Balance");        //Drives and balances on charge station (12 points // charging station zone)
     autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");      //Outtakes game piece into hybrid node and drives out of community (6 points // loading side zone)
     autoChooser.addOption("highNodeAndDrive", "highNodeAndDrive");    //()
+    autoChooser.addOption("highNodeAndBalance", "highNodeAndBalance");//()
+    autoChooser.addOption("TEST", "TEST");                            //()
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -161,10 +163,18 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.cubeAndDrive();
-    }  else if(autoChooser.getSelected().equals("highNodeAndDrive")) {
+    } else if(autoChooser.getSelected().equals("highNodeAndDrive")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.highNodeAndDrive();
+    } else if(autoChooser.getSelected().equals("highNodeAndBalance")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.highNodeAndBalance();
+    } else if(autoChooser.getSelected().equals("TEST")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.testAuto();
     } else {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
