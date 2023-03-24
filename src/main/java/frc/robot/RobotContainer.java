@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.ArmMove;
 // import frc.robot.commands.ArmZero;
 import frc.robot.commands.IntakeMove;
@@ -27,6 +28,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import frc.robot.subsystems.PoseEstimatorSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -37,6 +40,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain drivetrain = Drivetrain.getInstance();
+  private final PoseEstimatorSubsystem poseEstimator =
+      new PoseEstimatorSubsystem(drivetrain::getGyroscopeRotation, drivetrain::getModulePositions);
+ 
   //public static final Arm arm = Arm.getInstance();
   public static final Intake intake = new Intake();
   public static final Arm arm = new Arm();
@@ -92,6 +98,11 @@ public class RobotContainer {
     autoChooser.addOption("highNodeAndBalance", "highNodeAndBalance");//()
     autoChooser.addOption("cubeHighNodeAndStop", "cubeHighNodeAndStop");
     autoChooser.addOption("TEST", "TEST");                            //()
+    /**** Vision tab ****/
+    final var visionTab = Shuffleboard.getTab("Vision");
+
+    // Pose estimation
+    poseEstimator.addDashboardWidgets(visionTab);
   }
     // intake.setDefaultCommand(new IntakeHold());
     // arm.setDefaultCommand(armMove);
@@ -195,4 +206,12 @@ public class RobotContainer {
   //     }
   //   }
   // }
+  /**
+   * Called when the alliance reported by the driverstation/FMS changes.
+   * @param alliance new alliance value
+   */
+  public void onAllianceChanged(Alliance alliance) {
+    poseEstimator.setAlliance(alliance);
+  }
+
 }

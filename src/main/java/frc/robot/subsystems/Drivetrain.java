@@ -327,4 +327,7 @@ public class Drivetrain extends SubsystemBase {
   public SwerveModule getleftBack () {
     return leftBack;
   }
+  public Rotation2d getGyroscopeRotation() {
+    return gyro.getRotation2d();
+  }
 }
