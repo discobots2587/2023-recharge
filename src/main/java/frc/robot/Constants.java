@@ -119,7 +119,7 @@ public final class Constants {
     public static final double ARM_kI = 0; //0.0001
     public static final double ARM_kD = 0.0;
 
-    public static final double ENCODER_ROT_UP = -56;
+    public static final double ENCODER_ROT_UP = -54;
     public static final double ENCODER_ROT_MID = -30;
     // public static final int ARM_PIVOT_ID = 24;
   }
