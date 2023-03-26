@@ -74,7 +74,7 @@ public final class Constants {
     public static final double deadbandValue = 0.1;
 
     //Auton constraints
-    public static final double AUTO_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED / 1.5;
+    public static final double AUTO_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED / 1.4;
     public static final double AUTO_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED / 2.0;
     public static final double AUTO_DRIVE_MAX_ACCELERATION = 3;
     public static final double AUTO_DRIVE_MAX_ANGULAR_ACCELERATION = Math.PI;
@@ -132,7 +132,7 @@ public final class Constants {
     public static final double INTAKE_kI = 0.0;
     public static final double INTAKE_kD = 0.0;
 
-    public static final double ENCODER_ROT_DOWN = -14.0; // TUNE THIS
+    public static final double ENCODER_ROT_DOWN = -15.5; // TUNE THIS
     public static final double ENCODER_ROT_STOW = 0; // TUNE THIS
     // public static final int ARM_PIVOT_ID = 24;
   }
