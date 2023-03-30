@@ -69,8 +69,9 @@ public class RobotContainer {
   
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
 
-  private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
-  private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
+  // TESTING Purposes for the arm and Intake
+  // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
+  // private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
 
@@ -140,9 +141,10 @@ public class RobotContainer {
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
     
+    // TESTING Purposes for the arm and Intake
     //Zero encoders
-    resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
-    resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
+    //resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
+    //resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
 
     //Lock wheels
     lockWheels.onTrue(new InstantCommand(() -> drivetrain.formX()));
