@@ -43,13 +43,24 @@ public class SwerveDrive extends CommandBase {
         true,
         true);
     }
+   
     else{
+      // This is the code that ran for all of Houston District and it worked If needed revert to this
+      // RobotContainer.drivetrain.swerveDrive(
+      //   RobotContainer.driverController.getLeftY(), 
+      //   RobotContainer.driverController.getLeftX(), 
+      //   RobotContainer.driverController.getRightX(),
+      //   -RobotContainer.driverController.getRightY(),
+      //   !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
+      //   false,
+      //   true);
       RobotContainer.drivetrain.swerveDrive(
         RobotContainer.driverController.getLeftY(), 
         RobotContainer.driverController.getLeftX(), 
         RobotContainer.driverController.getRightX(),
         -RobotContainer.driverController.getRightY(),
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
+        RobotContainer.driverController.getRawButton(XboxController.Button.kRightBumper.value),
         false,
         true);
     }

@@ -73,6 +73,7 @@ public class RobotContainer {
   // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
+  // NOTE - The reason this isn't working is because there is a button overlap between the swervedrive command for robot centric control
   private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
