@@ -75,13 +75,8 @@ public final class Constants {
     public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
 
     //Teleop constraints
-<<<<<<< Updated upstream
-    public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED * 0.6;
-    public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /1.75;
-=======
     public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED;
     public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /2;
->>>>>>> Stashed changes
     public static final double TELE_DRIVE_MAX_ACCELERATION = 3;
     public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 1.5;
     public static final double deadbandValue = 0.1;
@@ -133,13 +128,8 @@ public final class Constants {
     public static final double ARM_kI = 0; //0.0001
     public static final double ARM_kD = 0.0;
 
-<<<<<<< Updated upstream
-    public static final double ENCODER_ROT_UP = -56;
-    public static final double ENCODER_ROT_MID = -30;
-=======
     public static final double ENCODER_ROT_UP = -52;
     public static final double ENCODER_ROT_MID = -25;
->>>>>>> Stashed changes
     // public static final int ARM_PIVOT_ID = 24;
   }
   public static final class IntakeConstants{
