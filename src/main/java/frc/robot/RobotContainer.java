@@ -56,27 +56,6 @@ public class RobotContainer {
   public static final XboxController driverController = new XboxController(IOConstants.DRIVER_CONTROLLER_PORT);
   public static final XboxController OpController = new XboxController(IOConstants.OP_CONTROLLER_PORT);
 
-  //Controller Map
-  /*
-    Driver controller
-    A - Zero heading of the robot
-    Left Stick - Move
-    Right Stick - Turn
-    Right bumper - Fast Mode
-    Left bumper  - Robot centric operation
-
-    TO BE IMPLIMENTED (directions are from the perspective of the driver)
-    Y - Line up with center of april Tag
-    X - Line up with cone to the Left of april Tag
-    B - Line up with cone to the right of april Tag
-
-    Operator Controller
-    Bumpers - Intake and outtake on both the ground and arm intakes
-    X - Arm Up
-    A - Arm Mid
-    B - Arm Stow
-    Y - Deploy intake (auto retracts)
-  */
   private final JoystickButton resetHeading_Start = new JoystickButton(driverController, XboxController.Button.kA.value);
   // private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
@@ -94,13 +73,10 @@ public class RobotContainer {
   
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
 
-  // TESTING Purposes for the arm and Intake
-  // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
-  // private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
-  // REMOVED BECAUE IT STILL HASN"T BEEN USED
-  // NOTE - The reason this isn't working is because there is a button overlap between the swervedrive command for robot centric control
-  // private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
+  private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
 
   private final JoystickButton controlmode = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
 
@@ -175,15 +151,13 @@ public class RobotContainer {
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
     
-    // TESTING Purposes for the arm and Intake
     //Zero encoders
-    //resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
-    //resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
+    resetIntakeEncoder.onTrue(new InstantCommand(() -> intake.intakeEncZero()));
+    resetArmEncoder.onTrue(new InstantCommand(() -> arm.armEncZero()));
 
-    // REMOVED BECAUE IT STILL HASN"T BEEN USED
     //Lock wheels
-    // lockWheels.onTrue(new InstantCommand(() -> drivetrain.formX()));
-    // lockWheels.onTrue(new InstantCommand(() -> drivetrain.stopModules()));
+    lockWheels.onTrue(new InstantCommand(() -> drivetrain.formX()));
+    lockWheels.onTrue(new InstantCommand(() -> drivetrain.stopModules()));
 
 
     controlmode.onTrue(new InstantCommand(() -> drivetrain.setControlMode(true)));
