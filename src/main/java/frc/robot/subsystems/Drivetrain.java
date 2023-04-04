@@ -70,6 +70,8 @@ public class Drivetrain extends SubsystemBase {
   private AHRS gyro = new AHRS (Port.kMXP);
   //private double rates[] = new double[3];
 
+  private boolean controlmode = false;
+
   private SwerveDriveOdometry odometry = new SwerveDriveOdometry(SwerveConstants.DRIVE_KINEMATICS, new Rotation2d(0), getModulePositions());
 
   private enum DriveMode{
@@ -146,10 +148,17 @@ public class Drivetrain extends SubsystemBase {
     // frontSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? frontSpeed * 0.45 : frontSpeed;
     // sideSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? sideSpeed * 0.45 : sideSpeed;
     // turnSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? turnSpeed * 0.45 : turnSpeed;
-
-    frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
-    sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
-    turnSpeed = turnLimiter.calculate(turnSpeed) * SwerveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED;
+    
+    if (!controlmode) {
+      frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
+      sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
+      turnSpeed = turnLimiter.calculate(turnSpeed) * SwerveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED;
+    } else {
+      frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED *.25;
+      sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED * .15;
+      turnSpeed = turnLimiter.calculate(turnSpeed) * SwerveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED * .2; 
+    }
+    
 
     ChassisSpeeds chassisSpeeds;
     SmartDashboard.putString("drive heading", getHeadingRotation2d().toString());
@@ -226,6 +235,10 @@ public class Drivetrain extends SubsystemBase {
     rightFront.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     leftBack.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     rightBack.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
+  }
+
+  public void setControlMode (boolean value) {
+    controlmode = value;
   }
 
   public void stopModules(){

@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 // import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.PoseEstimatorSubsystem;
@@ -60,6 +61,9 @@ public class RobotContainer {
   // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
 
   private final JoystickButton Intake_ON_LB = new JoystickButton(OpController, XboxController.Button.kLeftBumper.value);
+  private final POVButton Intake_ON_HOLD = new POVButton(OpController, 0);
+
+  
   private final JoystickButton Intake_OFF_RB = new JoystickButton(OpController, XboxController.Button.kRightBumper.value);
 
   // private final JoystickButton ZERO_ARM = new JoystickButton(driverController, XboxController.Button.kA.value);
@@ -73,6 +77,8 @@ public class RobotContainer {
   private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   private final JoystickButton lockWheels = new JoystickButton(driverController, XboxController.Button.kB.value);
+
+  private final JoystickButton controlmode = new JoystickButton(driverController, XboxController.Button.kRightBumper.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer()
@@ -127,6 +133,11 @@ public class RobotContainer {
 
     //Intaking and outtaking
     Intake_ON_LB.onTrue(new InstantCommand(() -> arm.pickUp())); //intake cones, outtake cubes
+
+    Intake_ON_HOLD.onTrue(new InstantCommand(() -> arm.keep())); //keep cones
+    Intake_ON_HOLD.onFalse(new InstantCommand(() -> arm.intakeStop()));
+    
+
     Intake_ON_LB.onTrue(new InstantCommand(() -> intake.groundPickUp())); 
     Intake_ON_LB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     Intake_ON_LB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
@@ -147,6 +158,10 @@ public class RobotContainer {
     //Lock wheels
     lockWheels.onTrue(new InstantCommand(() -> drivetrain.formX()));
     lockWheels.onTrue(new InstantCommand(() -> drivetrain.stopModules()));
+
+
+    controlmode.onTrue(new InstantCommand(() -> drivetrain.setControlMode(true)));
+    controlmode.onFalse(new InstantCommand(() -> drivetrain.setControlMode(false)));
 
     //Arm Zero
     // ZERO_ARM.onTrue(new ArmZero());

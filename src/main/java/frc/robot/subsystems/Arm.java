@@ -41,6 +41,7 @@ public class Arm extends SubsystemBase {
     intake = new VictorSPX(ArmConstants.ARM_INTAKE_ID);
     intake.setNeutralMode(NeutralMode.Brake);
     
+    
     armController.setP(ArmConstants.ARM_kP);
     armController.setI(ArmConstants.ARM_kI);
     armController.setD(ArmConstants.ARM_kD);
@@ -51,6 +52,10 @@ public class Arm extends SubsystemBase {
   {
     intake.set(ControlMode.PercentOutput, 25); 
     // return false;
+  }
+
+  public void keep() {
+    intake.set(ControlMode.PercentOutput, .4); 
   }
   
   public void outtake() //outtake a cone
