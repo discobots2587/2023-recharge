@@ -173,6 +173,44 @@ public class Drivetrain extends SubsystemBase {
 
     setModuleStates(moduleStates);
   }
+
+  //Added a version for fast mode so that sprints can be done faster. Removed unnescessary code
+  public void swerveDrive(double frontSpeed, double sideSpeed, double turnX, double turnY, 
+    boolean fieldOriented, boolean fastMode, boolean headingControl, boolean deadband){
+    if(deadband){
+      frontSpeed = Math.abs(frontSpeed) > Constants.SwerveConstants.deadbandValue ? frontSpeed : 0;
+      sideSpeed = Math.abs(sideSpeed) > Constants.SwerveConstants.deadbandValue ? sideSpeed : 0;
+      turnX = Math.abs(turnX) > Constants.SwerveConstants.deadbandValue ? turnX : 0;
+      turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
+    }
+    double turnSpeed = -turnX;
+
+    //Should theoretically make the robot faster by a factor determined in the constants.java when the fastMode suplier is true
+    if(fastMode)
+    {
+      frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_FAST_SPEED;
+      sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_FAST_SPEED;
+    }
+    else
+    {
+      frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
+      sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_MAX_SPEED;
+    }
+    turnSpeed = turnLimiter.calculate(turnSpeed) * SwerveConstants.TELE_DRIVE_MAX_ANGULAR_SPEED;
+
+    ChassisSpeeds chassisSpeeds;
+    SmartDashboard.putString("drive heading", getHeadingRotation2d().toString());
+    if(fieldOriented){
+      chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(frontSpeed, sideSpeed, turnSpeed, getHeadingRotation2d());
+    }
+    else{
+      chassisSpeeds = new ChassisSpeeds(frontSpeed, sideSpeed, turnSpeed);
+    }
+
+    SwerveModuleState[] moduleStates = SwerveConstants.DRIVE_KINEMATICS.toSwerveModuleStates(chassisSpeeds);
+
+    setModuleStates(moduleStates);
+  }
   
   public Pose2d getPose(){
     return odometry.getPoseMeters();
