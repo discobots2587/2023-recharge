@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.ArmMove;
+import frc.robot.commands.AutoAlign;
 // import frc.robot.commands.ArmZero;
 import frc.robot.commands.IntakeMove;
 // import frc.robot.subsystems.Arm;
@@ -40,7 +41,7 @@ import frc.robot.subsystems.PoseEstimatorSubsystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final Drivetrain drivetrain = Drivetrain.getInstance();
-  private final PoseEstimatorSubsystem poseEstimator =
+  public static final PoseEstimatorSubsystem poseEstimator =
       new PoseEstimatorSubsystem(drivetrain::getGyroscopeRotation, drivetrain::getModulePositions);
  
   //public static final Arm arm = Arm.getInstance();
@@ -89,6 +90,9 @@ public class RobotContainer {
   private final JoystickButton ARM_STOW = new JoystickButton(OpController, XboxController.Button.kB.value);
   
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
+
+  //April Tag Auto Allign
+  private final JoystickButton lineUp_Center = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   // TESTING Purposes for the arm and Intake
   // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
@@ -163,6 +167,9 @@ public class RobotContainer {
     //Intake up and down Neo Control
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
+
+    //April Tag Auto Align
+    //lineUp_Center.onTrue(new AutoAlign.);
     
     // TESTING Purposes for the arm and Intake
     //Zero encoders

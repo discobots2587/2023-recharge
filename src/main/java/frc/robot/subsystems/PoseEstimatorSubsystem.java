@@ -139,6 +139,21 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
         pose.getRotation().getDegrees());
   }
 
+  public double getPoseX() {
+    var pose = getCurrentPose();
+    return pose.getX();
+  }
+
+  public double getPoseY() {
+    var pose = getCurrentPose();
+    return pose.getY();
+  }
+
+  public double getPoseRotation() {
+    var pose = getCurrentPose();
+    return pose.getRotation().getDegrees();
+  }
+
   public Pose2d getCurrentPose() {
     return poseEstimator.getEstimatedPosition();
   }
