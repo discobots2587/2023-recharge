@@ -213,17 +213,17 @@ public final class Constants {
          * 7  - 3_center
          * 8  - 3_right
          * 
-         * 9  - 4_left
-         * 10 - 4_center
-         * 11 - 4_right
+         * 9  - 6_left
+         * 10 - 6_center
+         * 11 - 6_right
          * 
-         * 12 - 5_left
-         * 13 - 5_center
-         * 14 - 5_right
+         * 12 - 7_left
+         * 13 - 7_center
+         * 14 - 7_right
          * 
-         * 15 - 6_left
-         * 16 - 6_center
-         * 17 - 6_right
+         * 15 - 8_left
+         * 16 - 8_center
+         * 17 - 8_right
         */
 
         //Tag 1
@@ -241,17 +241,17 @@ public final class Constants {
         new Pose2d(15.3, 4.424426, Rotation2d.fromDegrees(180)),    //In front of tag
         new Pose2d(15.3, 5.0, Rotation2d.fromDegrees(180)),         //Right of tag
 
-        //Tag 4
+        //Tag 6
         new Pose2d(1.2, 0.4, Rotation2d.fromDegrees(0)),            //Left of tag
         new Pose2d(1.2, 1.071626, Rotation2d.fromDegrees(0)),       //In front of tag
         new Pose2d(1.2, 1.64, Rotation2d.fromDegrees(0)),           //Right of tag
 
-        //Tag 5
+        //Tag 7
         new Pose2d(1.2, 2.1, Rotation2d.fromDegrees(0)),            //Left of tag
         new Pose2d(1.2, 2.748026, Rotation2d.fromDegrees(0)),       //In front of tag
         new Pose2d(1.2, 3.3, Rotation2d.fromDegrees(0)),            //Right of tag
 
-        //Tag 6
+        //Tag 8
         new Pose2d(1.2, 3.857, Rotation2d.fromDegrees(0)),          //Left of tag
         new Pose2d(1.2, 4.424426, Rotation2d.fromDegrees(0)),       //In front of tag
         new Pose2d(1.2, 5.0, Rotation2d.fromDegrees(0))             //Right of tag
