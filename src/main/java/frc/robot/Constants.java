@@ -198,6 +198,34 @@ public final class Constants {
     //Scoring Poses
     public static final Pose2d[] SCORING_POSES = {
 
+        /*
+         * [ID in array] - [April tag ID]_[left/center/right]
+         * 
+         * 0  - 1_left
+         * 1  - 1_center
+         * 2  - 1_right
+         * 
+         * 3  - 2_left
+         * 4  - 2_center
+         * 5  - 2_right
+         * 
+         * 6  - 3_left
+         * 7  - 3_center
+         * 8  - 3_right
+         * 
+         * 9  - 4_left
+         * 10 - 4_center
+         * 11 - 4_right
+         * 
+         * 12 - 5_left
+         * 13 - 5_center
+         * 14 - 5_right
+         * 
+         * 15 - 6_left
+         * 16 - 6_center
+         * 17 - 6_right
+        */
+
         //Tag 1
         new Pose2d(15.3, 0.4, Rotation2d.fromDegrees(180)),         //Left of tag
         new Pose2d(15.3, 1.071626, Rotation2d.fromDegrees(180)),    //In front of tag
