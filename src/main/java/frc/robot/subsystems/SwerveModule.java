@@ -32,9 +32,10 @@ public class SwerveModule extends SubsystemBase {
 
   private AnalogInput input;
 
-
   private boolean absoluteEncoderReversed;
   private double absoluteEncoderOffset;
+
+  //private final SwerveDrivePoseEstimator swerveOdometry;
 
   /** Creates a new SwerveModule. */
   public SwerveModule(int driveMotorId, int turnMotorId, boolean driveMotorReversed, boolean turnMotorReversed,

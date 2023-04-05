@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
+
 //import java.text.DecimalFormat;
 
 //import com.ctre.phoenix.sensors.Pigeon2;
@@ -11,16 +13,22 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 // import frc.robot.RobotContainer;
 import frc.robot.Constants.SwerveConstants;
+import frc.robot.Constants.kAutoAlign;
+
+import java.util.function.Supplier;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort.*;
@@ -368,4 +376,114 @@ public class Drivetrain extends SubsystemBase {
   public Rotation2d getGyroscopeRotation() {
     return gyro.getRotation2d();
   }
+
+  //Drive Command (EXPERIMENTAL)
+  public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
+        SwerveModuleState[] swerveModuleStates = Constants.SwerveConstants.DRIVE_KINEMATICS.toSwerveModuleStates(
+            fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
+                translation.getX(),
+                translation.getY(),
+                rotation,
+                new Rotation2d(gyro.getAngle())
+            ) : new ChassisSpeeds(
+                translation.getX(),
+                translation.getY(),
+                rotation
+            )
+        );
+
+        SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.SwerveConstants.DRIVETRAIN_MAX_SPEED);
+
+        leftFront.setDesiredState(swerveModuleStates[0]);
+        rightFront.setDesiredState(swerveModuleStates[1]);
+        leftBack.setDesiredState(swerveModuleStates[2]);
+        rightBack.setDesiredState(swerveModuleStates[3]);
+    }
+
+
+
+  //Move to pose command (EXPERIMENTAL)
+  public Command moveToPose(Supplier<Pose2d> poseSupplier, Translation2d newOffset) {
+    PIDController yaxisPid = new PIDController(
+        kAutoAlign.Y_P, 
+        kAutoAlign.Y_I, 
+        kAutoAlign.Y_D
+    );
+
+    PIDController xaxisPid = new PIDController(
+        kAutoAlign.X_P, 
+        kAutoAlign.X_I, 
+        kAutoAlign.X_D
+    );
+
+    PIDController thetaPid = new PIDController(
+        kAutoAlign.THETA_P, 
+        kAutoAlign.THETA_I, 
+        kAutoAlign.THETA_D
+    );
+
+    thetaPid.enableContinuousInput(0, 2 * Math.PI);
+
+    xaxisPid.setTolerance(kAutoAlign.X_TOLLERENCE);
+    yaxisPid.setTolerance(kAutoAlign.Y_TOLLERENCE);
+    thetaPid.setTolerance(kAutoAlign.THETA_TOLLERENCE);
+
+    return runOnce(() -> {
+        xaxisPid.calculate(RobotContainer.poseEstimator.getPoseX());
+        yaxisPid.calculate(RobotContainer.poseEstimator.getPoseY());
+        thetaPid.calculate(Rotation2d.fromDegrees(RobotContainer.poseEstimator.getPoseRotation()).getRadians());
+
+        SmartDashboard.putNumber("In Auto Align", 1);
+        Translation2d offset = newOffset;
+        // Give offset a default value
+        if (offset == null) {
+            offset = kAutoAlign.DEFAULT_OFFSET;
+        }
+
+        // Get forward vector of pose and add it to offset
+        Pose2d pose = poseSupplier.get();
+        Rotation2d targetRot = pose.getRotation();
+        offset = offset.rotateBy(targetRot);
+        Translation2d targetTrans = pose.getTranslation();
+        Translation2d offsetTarget = targetTrans.plus(offset);
+
+        RobotContainer.poseEstimator.poseOffsetCalculation(offsetTarget, targetRot);
+
+        // Set pid setpoints
+        xaxisPid.setSetpoint(offsetTarget.getX());
+        yaxisPid.setSetpoint(offsetTarget.getY());
+
+        // Invert theta to ensure we're facing towards the target
+        thetaPid.setSetpoint(targetRot.minus(Constants.kAutoAlign.DEFAULT_ROTATION).getRadians());
+    }).andThen(run(
+        () -> {
+            SmartDashboard.putNumber("x tolerance", xaxisPid.getPositionError());
+            SmartDashboard.putNumber("y tolerance", yaxisPid.getPositionError());
+            SmartDashboard.putNumber("theta tolerance", thetaPid.getPositionError());
+
+            drive(
+                new Translation2d(
+                    xaxisPid.calculate(RobotContainer.poseEstimator.getPoseX()),
+                    yaxisPid.calculate(RobotContainer.poseEstimator.getPoseY())
+                ),
+                thetaPid.calculate(
+                  Rotation2d.fromDegrees(RobotContainer.poseEstimator.getPoseRotation()).getRadians()
+                ),
+                true, 
+                false
+            );
+        }
+    )).until(
+        () -> xaxisPid.atSetpoint() && yaxisPid.atSetpoint() && thetaPid.atSetpoint()
+    ).andThen(
+        () -> { 
+            SmartDashboard.putNumber("In Auto Align", 0);
+
+            xaxisPid.close(); 
+            yaxisPid.close(); 
+            thetaPid.close(); 
+        }
+    );
+}
+  
 }

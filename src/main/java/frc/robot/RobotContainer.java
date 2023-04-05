@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import frc.robot.commands.ArmMove;
-import frc.robot.commands.AutoAlign;
 // import frc.robot.commands.ArmZero;
 import frc.robot.commands.IntakeMove;
 // import frc.robot.subsystems.Arm;
@@ -92,7 +91,7 @@ public class RobotContainer {
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
 
   //April Tag Auto Allign
-  private final JoystickButton lineUp_Center = new JoystickButton(driverController, XboxController.Button.kY.value);
+  //private final JoystickButton lineUp_Center = new JoystickButton(driverController, XboxController.Button.kY.value);
 
   // TESTING Purposes for the arm and Intake
   // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);

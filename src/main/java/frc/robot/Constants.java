@@ -13,10 +13,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
-import static edu.wpi.first.math.util.Units.degreesToRadians;
-import static edu.wpi.first.math.util.Units.inchesToMeters;
 
 
 /**
@@ -169,6 +166,68 @@ public final class Constants {
 
     /** Minimum target ambiguity. Targets with higher ambiguity will be discarded */
     public static final double APRILTAG_AMBIGUITY_THRESHOLD = 0.2;
+  }
+
+  public static class kAutoAlign {
+
+    public static final Rotation2d DEFAULT_ROTATION = Rotation2d.fromDegrees(0);  //EITHER 0 OR 180 (NOT TESTED)
+
+    //PID Tolerance
+    public static final double X_TOLLERENCE = 0.01;
+    public static final double Y_TOLLERENCE = 0.02;
+    public static final double THETA_TOLLERENCE = 0.02;
+
+    //PID Values (NEEDS TUNING)
+    public static final double X_P = 9.0; //
+    public static final double X_I = 0.0; //
+    public static final double X_D = 0.0; //
+
+    public static final double Y_P = 9.0; //
+    public static final double Y_I = 0.0; //
+    public static final double Y_D = 0.0; //
+            
+    public static final double THETA_P = 9.0; //
+    public static final double THETA_I = 0.0; //
+    public static final double THETA_D = 0.0; //
+
+    public static final double ERROR = 0.1;
+
+    //Offset Value
+    public static final Translation2d DEFAULT_OFFSET = new Translation2d(1.0, 0);
+
+    //Scoring Poses
+    public static final Pose2d[] SCORING_POSES = {
+
+        //Tag 1
+        new Pose2d(15.3, 0.4, Rotation2d.fromDegrees(180)),         //Left of tag
+        new Pose2d(15.3, 1.071626, Rotation2d.fromDegrees(180)),    //In front of tag
+        new Pose2d(15.3, 1.64, Rotation2d.fromDegrees(180)),        //Right of tag
+
+        //Tag 2
+        new Pose2d(15.3, 2.1, Rotation2d.fromDegrees(180)),         //Left of tag
+        new Pose2d(15.3, 2.748026, Rotation2d.fromDegrees(180)),    //In front of tag
+        new Pose2d(15.3, 3.3, Rotation2d.fromDegrees(180)),         //Right of tag
+
+        //Tag 3
+        new Pose2d(15.3, 3.857, Rotation2d.fromDegrees(180)),       //Left of tag
+        new Pose2d(15.3, 4.424426, Rotation2d.fromDegrees(180)),    //In front of tag
+        new Pose2d(15.3, 5.0, Rotation2d.fromDegrees(180)),         //Right of tag
+
+        //Tag 4
+        new Pose2d(1.2, 0.4, Rotation2d.fromDegrees(0)),            //Left of tag
+        new Pose2d(1.2, 1.071626, Rotation2d.fromDegrees(0)),       //In front of tag
+        new Pose2d(1.2, 1.64, Rotation2d.fromDegrees(0)),           //Right of tag
+
+        //Tag 5
+        new Pose2d(1.2, 2.1, Rotation2d.fromDegrees(0)),            //Left of tag
+        new Pose2d(1.2, 2.748026, Rotation2d.fromDegrees(0)),       //In front of tag
+        new Pose2d(1.2, 3.3, Rotation2d.fromDegrees(0)),            //Right of tag
+
+        //Tag 6
+        new Pose2d(1.2, 3.857, Rotation2d.fromDegrees(0)),          //Left of tag
+        new Pose2d(1.2, 4.424426, Rotation2d.fromDegrees(0)),       //In front of tag
+        new Pose2d(1.2, 5.0, Rotation2d.fromDegrees(0))             //Right of tag
+    };
   }
 
 }
