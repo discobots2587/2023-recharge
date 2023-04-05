@@ -9,6 +9,7 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
+        "titleType": 0,
         "tiles": {
           "8,4": {
             "size": [
@@ -18,7 +19,9 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Auton Chooser",
-              "_title": "Auton Chooser"
+              "_title": "Auton Chooser",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "9,3": {
@@ -29,7 +32,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Arm Encoder",
-              "_title": "Arm Encoder"
+              "_title": "Arm Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "0,1": {
@@ -41,14 +46,16 @@
               "_type": "Camera Stream",
               "_source0": "camera_server://photonvision_Port_1182_MJPEG_Server",
               "_title": "photonvision_Port_1182_MJPEG_Server",
+              "_glyph": 148,
+              "_showGlyph": false,
               "Crosshair/Show crosshair": true,
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": true,
               "Controls/Rotation": "NONE",
               "compression": -1.0,
               "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           },
           "0,0": {
@@ -59,7 +66,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Heading",
-              "_title": "SmartDashboard/Heading"
+              "_title": "SmartDashboard/Heading",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "8,3": {
@@ -70,7 +79,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Intake Encoder",
-              "_title": "SmartDashboard/Intake Encoder"
+              "_title": "SmartDashboard/Intake Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "1,0": {
@@ -81,7 +92,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Intake Position",
-              "_title": "/SmartDashboard/Intake Position"
+              "_title": "/SmartDashboard/Intake Position",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "2,0": {
@@ -93,6 +106,8 @@
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Intake Homed",
               "_title": "Intake Homed",
+              "_glyph": 148,
+              "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -106,6 +121,8 @@
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Arm Homed",
               "_title": "Arm Homed",
+              "_glyph": 148,
+              "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -118,7 +135,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Front Left",
-              "_title": "Front Left"
+              "_title": "Front Left",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "5,0": {
@@ -129,7 +148,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Front Right",
-              "_title": "Front Right"
+              "_title": "Front Right",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "6,0": {
@@ -140,7 +161,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Back Right",
-              "_title": "Back Right"
+              "_title": "Back Right",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "7,0": {
@@ -151,7 +174,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Back Left",
-              "_title": "Back Left"
+              "_title": "Back Left",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "8,0": {
@@ -162,7 +187,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [11] smps",
-              "_title": "Swerve [11] smps"
+              "_title": "Swerve [11] smps",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "9,0": {
@@ -173,7 +200,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [11] max speed",
-              "_title": "Swerve [11] max speed"
+              "_title": "Swerve [11] max speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "5,1": {
@@ -184,7 +213,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [11] speed",
-              "_title": "Swerve [11] speed"
+              "_title": "Swerve [11] speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "6,1": {
@@ -195,7 +226,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [11] State",
-              "_title": "Swerve [11] State"
+              "_title": "Swerve [11] State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "7,1": {
@@ -206,7 +239,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [11] Desired State",
-              "_title": "Swerve [11] Desired State"
+              "_title": "Swerve [11] Desired State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "8,1": {
@@ -217,7 +252,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve 11 Abs Encoder",
-              "_title": "Swerve 11 Abs Encoder"
+              "_title": "Swerve 11 Abs Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "9,1": {
@@ -228,7 +265,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [1] smps",
-              "_title": "Swerve [1] smps"
+              "_title": "Swerve [1] smps",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "5,2": {
@@ -239,7 +278,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [1] max speed",
-              "_title": "Swerve [1] max speed"
+              "_title": "Swerve [1] max speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "6,2": {
@@ -250,7 +291,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [1] speed",
-              "_title": "Swerve [1] speed"
+              "_title": "Swerve [1] speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "7,2": {
@@ -261,7 +304,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [1] State",
-              "_title": "Swerve [1] State"
+              "_title": "Swerve [1] State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "8,2": {
@@ -272,7 +317,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [1] Desired State",
-              "_title": "Swerve [1] Desired State"
+              "_title": "Swerve [1] Desired State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "9,2": {
@@ -283,7 +330,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve 1 Abs Encoder",
-              "_title": "Swerve 1 Abs Encoder"
+              "_title": "Swerve 1 Abs Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "5,3": {
@@ -294,7 +343,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [20] smps",
-              "_title": "Swerve [20] smps"
+              "_title": "Swerve [20] smps",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "6,3": {
@@ -305,7 +356,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [20] max speed",
-              "_title": "Swerve [20] max speed"
+              "_title": "Swerve [20] max speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "7,3": {
@@ -316,7 +369,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [20] speed",
-              "_title": "Swerve [20] speed"
+              "_title": "Swerve [20] speed",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "5,4": {
@@ -327,7 +382,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [20] State",
-              "_title": "Swerve [20] State"
+              "_title": "Swerve [20] State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "6,4": {
@@ -338,7 +395,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve [20] Desired State",
-              "_title": "Swerve [20] Desired State"
+              "_title": "Swerve [20] Desired State",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           },
           "7,4": {
@@ -349,7 +408,9 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Swerve 20 Abs Encoder",
-              "_title": "Swerve 20 Abs Encoder"
+              "_title": "Swerve 20 Abs Encoder",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           }
         }
@@ -364,6 +425,7 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
+        "titleType": 0,
         "tiles": {}
       }
     },
@@ -376,14 +438,15 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
+        "titleType": 0,
         "tiles": {}
       }
     }
   ],
   "windowGeometry": {
-    "x": -7.0,
-    "y": -7.0,
-    "width": 1550.5,
-    "height": 878.5
+    "x": -7.199999809265137,
+    "y": -7.199999809265137,
+    "width": 1550.4000244140625,
+    "height": 878.4000244140625
   }
 }

@@ -438,7 +438,7 @@ public class Drivetrain extends SubsystemBase {
         yaxisPid.calculate(RobotContainer.poseEstimator.getPoseY());
         thetaPid.calculate(Rotation2d.fromDegrees(RobotContainer.poseEstimator.getPoseRotation()).getRadians());
 
-        SmartDashboard.putNumber("In Auto Align", 1);
+        SmartDashboard.putBoolean("In Auto Align", true);
         Translation2d offset = newOffset;
         // Give offset a default value
         if (offset == null) {
@@ -482,7 +482,7 @@ public class Drivetrain extends SubsystemBase {
         () -> xaxisPid.atSetpoint() && yaxisPid.atSetpoint() && thetaPid.atSetpoint()
     ).andThen(
         () -> { 
-            SmartDashboard.putNumber("In Auto Align", 0);
+            SmartDashboard.putBoolean("In Auto Align", false);
 
             xaxisPid.close(); 
             yaxisPid.close(); 
