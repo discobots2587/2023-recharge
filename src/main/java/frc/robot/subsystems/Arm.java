@@ -63,6 +63,10 @@ public class Arm extends SubsystemBase {
   {
     intake.set(ControlMode.PercentOutput, 0);
   }
+
+  public void keep() {
+    intake.set(ControlMode.PercentOutput, .4); 
+  }
   
   public void armHold(){
     armDrive.set(0);

@@ -167,7 +167,7 @@ public class Drivetrain extends SubsystemBase {
 
   //Added a version for fast mode so that sprints can be done faster. Removed unnescessary code
   public void swerveDrive(double frontSpeed, double sideSpeed, double turnX, double turnY, 
-    boolean fieldOriented, boolean fastMode, boolean headingControl, boolean deadband){
+    boolean fieldOriented, boolean fastMode, boolean slowMode, boolean headingControl, boolean deadband){
     if(deadband){
       frontSpeed = Math.abs(frontSpeed) > Constants.SwerveConstants.deadbandValue ? frontSpeed : 0;
       sideSpeed = Math.abs(sideSpeed) > Constants.SwerveConstants.deadbandValue ? sideSpeed : 0;
@@ -181,6 +181,11 @@ public class Drivetrain extends SubsystemBase {
     {
       frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_FAST_SPEED;
       sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_FAST_SPEED;
+    }
+    else if(slowMode)
+    {
+      frontSpeed = frontLimiter.calculate(frontSpeed) * SwerveConstants.TELE_DRIVE_SLOW_SPEED;
+      sideSpeed = sideLimiter.calculate(sideSpeed) * SwerveConstants.TELE_DRIVE_SLOW_SPEED;
     }
     else
     {
