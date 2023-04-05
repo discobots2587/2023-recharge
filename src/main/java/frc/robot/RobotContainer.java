@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 // import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import frc.robot.subsystems.PoseEstimatorSubsystem;
@@ -80,6 +81,7 @@ public class RobotContainer {
   // private final JoystickButton subsDriveMode_Y = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton gridDriveMode_A = new JoystickButton(driverController, XboxController.Button.kA.value);
 
+  private final POVButton Intake_ON_HOLD = new POVButton(OpController, 0);
   private final JoystickButton Intake_ON_LB = new JoystickButton(OpController, XboxController.Button.kLeftBumper.value);
   private final JoystickButton Intake_OFF_RB = new JoystickButton(OpController, XboxController.Button.kRightBumper.value);
 
@@ -162,6 +164,10 @@ public class RobotContainer {
     Intake_OFF_RB.onTrue(new InstantCommand(() -> intake.groundOuttake()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> arm.intakeStop()));
     Intake_OFF_RB.onFalse(new InstantCommand(() -> intake.groundIntakeStop()));
+    
+    //Holding cones
+    Intake_ON_HOLD.onTrue(new InstantCommand(() -> arm.keep()));
+    Intake_ON_HOLD.onFalse(new InstantCommand(() -> arm.intakeStop()));
     
     //Intake up and down Neo Control
     INTAKE_DOWN.onTrue(new IntakeMove(intake, () -> true, ()-> false));

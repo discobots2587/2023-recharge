@@ -74,6 +74,8 @@ public final class Constants {
     //Teleop constraints
     public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED * 0.5;
     public static final double TELE_DRIVE_FAST_SPEED = DRIVETRAIN_MAX_SPEED * 0.75;
+    public static final double TELE_DRIVE_SLOW_SPEED = DRIVETRAIN_MAX_SPEED * 0.2;
+
     public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /1.75;
     public static final double TELE_DRIVE_MAX_ACCELERATION = 3;
     public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 3;
@@ -121,13 +123,15 @@ public final class Constants {
     public static final int ARM_INTAKE_ID = 51;
     public static final int ARM_LIM_SWITCH_PORT = 0;
 
-    public static final double ARM_kP = 0.05; //0.25
+    public static final double ARM_kP = 0.045;// Houston value - 0.05; //0.25
     public static final double ARM_kI = 0; //0.0001
     public static final double ARM_kD = 0.0;
 
-    public static final double ENCODER_ROT_UP = -56;
-    public static final double ENCODER_ROT_MID = -30;
-    // public static final int ARM_PIVOT_ID = 24;
+    public static final double ENCODER_ROT_UP = -52;
+    public static final double ENCODER_ROT_MID = -25;
+    //Houston Values
+    // public static final double ENCODER_ROT_UP = -56;
+    // public static final double ENCODER_ROT_MID = -30;
   }
   public static final class IntakeConstants{
     public static final int INTAKE_DRIVER_ID = 60;
@@ -140,7 +144,6 @@ public final class Constants {
 
     public static final double ENCODER_ROT_DOWN = -14.0; // TUNE THIS
     public static final double ENCODER_ROT_STOW = 0; // TUNE THIS
-    // public static final int ARM_PIVOT_ID = 24;
   }
   public static class VisionConstants {
     // VisionConstants from FRC-7028 PhotonVision code
