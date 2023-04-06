@@ -121,7 +121,7 @@ public class RobotContainer {
     autoChooser.addOption("DriveBack", "DriveBack");
     autoChooser.addOption("SimpleTest", "SimpleTest");                //Drives straight (testing only)
     autoChooser.addOption("Drive", "Drive");                          //Drives out of community (3 points // loading side zone)
-    autoChooser.addOption("Balance", "Balance");        //Drives and balances on charge station (12 points // charging station zone)
+    autoChooser.addOption("Balance", "Balance");                      //Drives and balances on charge station (12 points // charging station zone)
     autoChooser.addOption("Cube+Drive(UNTESTED)", "Cube+Drive");      //Outtakes game piece into hybrid node and drives out of community (6 points // loading side zone)
     autoChooser.addOption("highNodeAndDrive", "highNodeAndDrive");    //()
     autoChooser.addOption("highNodeAndBalance", "highNodeAndBalance");//()

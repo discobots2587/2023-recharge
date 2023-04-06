@@ -131,9 +131,12 @@ public final class Autos {
   public static CommandBase cubeHighNodeAndStop() {
     return new SequentialCommandGroup(
       new InstantCommand(() -> RobotContainer.drivetrain.setAllMode(true)),
-      new InstantCommand(() -> RobotContainer.arm.pickUp()), 
-      new WaitCommand(1),
-      new InstantCommand(() -> RobotContainer.arm.intakeStop()), 
+      new InstantCommand(() -> RobotContainer.arm.armRotateTo(Constants.ArmConstants.ENCODER_ROT_UP)), 
+      new WaitCommand(1.5),
+      new InstantCommand(() -> RobotContainer.arm.pickUp()),
+      new WaitCommand(1), 
+      new InstantCommand(() -> RobotContainer.arm.intakeStop()),
+      new InstantCommand(() -> RobotContainer.arm.armRotateTo(0)),
       new InstantCommand(() -> RobotContainer.drivetrain.stopModules())
     );
   }
