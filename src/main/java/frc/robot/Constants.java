@@ -259,6 +259,31 @@ public final class Constants {
         new Pose2d(1.2, 4.424426, Rotation2d.fromDegrees(0)),       //In front of tag
         new Pose2d(1.2, 5.0, Rotation2d.fromDegrees(0))             //Right of tag
     };
+
+    //List indexes
+    public static final int left_1 = 0;
+    public static final int center_1 = 1;
+    public static final int right_1 = 2;
+
+    public static final int left_2 = 3;
+    public static final int center_2 = 4;
+    public static final int right_2 = 5;
+
+    public static final int left_3 = 6;
+    public static final int center_3 = 7;
+    public static final int right_3 = 8;
+
+    public static final int left_6 = 9;
+    public static final int center_6 = 10;
+    public static final int right_6 = 11;
+
+    public static final int left_7 = 12;
+    public static final int center_7 = 13;
+    public static final int right_7 = 14;
+
+    public static final int left_8 = 15;
+    public static final int center_8 = 16;
+    public static final int right_8 = 17;
   }
 
 }

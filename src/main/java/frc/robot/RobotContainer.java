@@ -20,6 +20,7 @@ import frc.robot.commands.ArmMove;
 import frc.robot.commands.IntakeMove;
 // import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.PhotonRunnable;
 // import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 // import edu.wpi.first.wpilibj2.command.Commands;
@@ -50,6 +51,7 @@ public class RobotContainer {
   public static final PowerDistribution pdh = Constants.PDH;
   private SendableChooser<String> autoChooser = new SendableChooser<>();
   public final ArmMove armMove;
+  public static final PhotonRunnable photonEstimator = new PhotonRunnable();
   // public final IntakeMove intakeMove;
 
 
@@ -93,7 +95,9 @@ public class RobotContainer {
   private final JoystickButton INTAKE_DOWN = new JoystickButton(OpController, XboxController.Button.kY.value);
 
   //April Tag Auto Allign
-  //private final JoystickButton lineUp_Center = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton lineUp_left = new JoystickButton(driverController, XboxController.Button.kX.value);
+  private final JoystickButton lineUp_center = new JoystickButton(driverController, XboxController.Button.kY.value);
+  private final JoystickButton lineUp_right = new JoystickButton(driverController, XboxController.Button.kB.value);
 
   // TESTING Purposes for the arm and Intake
   // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
@@ -174,7 +178,9 @@ public class RobotContainer {
     INTAKE_DOWN.onFalse(new IntakeMove(intake, () -> false, ()-> true));
 
     //April Tag Auto Align
-    //lineUp_Center.onTrue(new AutoAlign.);
+    lineUp_left.onTrue(new InstantCommand(() -> photonEstimator.alignLeft()));
+    lineUp_center.onTrue(new InstantCommand(() -> photonEstimator.alignCenter()));
+    lineUp_right.onTrue(new InstantCommand(() -> photonEstimator.alignRight()));
     
     // TESTING Purposes for the arm and Intake
     //Zero encoders
