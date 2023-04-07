@@ -99,6 +99,8 @@ public class RobotContainer {
   private final JoystickButton lineUp_center = new JoystickButton(driverController, XboxController.Button.kY.value);
   private final JoystickButton lineUp_right = new JoystickButton(driverController, XboxController.Button.kB.value);
 
+  private final POVButton invertTurnButton = new POVButton(driverController, 0);
+
   // TESTING Purposes for the arm and Intake
   // private final JoystickButton resetIntakeEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
   // private final JoystickButton resetArmEncoder = new JoystickButton(driverController, XboxController.Button.kY.value);
@@ -181,6 +183,8 @@ public class RobotContainer {
     lineUp_left.onTrue(new InstantCommand(() -> photonEstimator.alignLeft()));
     lineUp_center.onTrue(new InstantCommand(() -> photonEstimator.alignCenter()));
     lineUp_right.onTrue(new InstantCommand(() -> photonEstimator.alignRight()));
+
+    invertTurnButton.onTrue(new InstantCommand(() -> drivetrain.invertTurn()));
     
     // TESTING Purposes for the arm and Intake
     //Zero encoders

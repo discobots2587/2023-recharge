@@ -13,7 +13,7 @@ import frc.robot.Constants.IntakeConstants;
 // import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 // import frc.robot.Constants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import frc.robot.Robot;
 
 public class IntakeMove extends CommandBase
@@ -48,11 +48,11 @@ public class IntakeMove extends CommandBase
   {
     if (downSup.getAsBoolean())
     {
-      intake.intakeRotateTo(targetDown); SmartDashboard.putString("Intake Position", "Down");
+      intake.intakeRotateTo(targetDown); 
     }
     else if (stowSup.getAsBoolean())
     {
-      intake.intakeRotateTo(targetStow); SmartDashboard.putString("Intake Position", "Stow");
+      intake.intakeRotateTo(targetStow); 
     }
   }
 

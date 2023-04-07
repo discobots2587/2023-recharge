@@ -55,8 +55,7 @@ public class PoseEstimatorSubsystem extends SubsystemBase {
   private OriginPosition originPosition = kBlueAllianceWallRightSide;
   private boolean sawTag = false;
 
-  public PoseEstimatorSubsystem(
-      Supplier<Rotation2d> rotationSupplier, Supplier<SwerveModulePosition[]> modulePositionSupplier) {
+  public PoseEstimatorSubsystem(Supplier<Rotation2d> rotationSupplier, Supplier<SwerveModulePosition[]> modulePositionSupplier) {
     
     this.rotationSupplier = rotationSupplier;
     this.modulePositionSupplier = modulePositionSupplier;

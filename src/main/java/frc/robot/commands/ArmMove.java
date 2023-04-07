@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Arm;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import frc.robot.Robot;
 
 public class ArmMove extends CommandBase {
@@ -47,9 +47,9 @@ public class ArmMove extends CommandBase {
   @Override
   public void execute()
   {
-    if (UpSup.getAsBoolean()) {arm.armRotateTo(targetHigh); SmartDashboard.putString("Arm Position", "High");}
-    else if (midSup.getAsBoolean()) {arm.armRotateTo(targetMid); SmartDashboard.putString("Arm Position", "Mid");}
-    else if (StowSup.getAsBoolean()) {arm.armRotateTo(targetStow); SmartDashboard.putString("Arm Position", "Stow");}
+    if (UpSup.getAsBoolean()) {arm.armRotateTo(targetHigh); }
+    else if (midSup.getAsBoolean()) {arm.armRotateTo(targetMid); }
+    else if (StowSup.getAsBoolean()) {arm.armRotateTo(targetStow); }
   }
 
   // Called once the command ends or is interrupted.

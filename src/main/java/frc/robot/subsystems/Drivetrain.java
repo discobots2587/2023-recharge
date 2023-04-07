@@ -27,6 +27,7 @@ import frc.robot.RobotContainer;
 // import frc.robot.RobotContainer;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.Constants.kAutoAlign;
+// import frc.robot.commands.SwerveDrive;
 
 import java.util.function.Supplier;
 
@@ -35,6 +36,9 @@ import edu.wpi.first.wpilibj.SerialPort.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends SubsystemBase {
+
+  public int ivtTurn = 1;
+
   private SwerveModule leftFront = new SwerveModule(
     SwerveConstants.LEFT_FRONT_DRIVE_ID, 
     SwerveConstants.LEFT_FRONT_TURN_ID, 
@@ -124,32 +128,7 @@ public class Drivetrain extends SubsystemBase {
       turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
 
-    // double turnSpeed;
-    // if(headingControl){
-    //   if(turnX == 0 && turnY == 0){
-    //     turnSpeed = 0;
-    //   }
-    //   else{
-    //     double error = getJoystickAngle(turnX, turnY) - getHeading();
-    
-    //     if(error > 180) {
-    //       error -= 360;
-    //     }
-    //     else if(error < -180){
-    //       error += 360;
-    //     }
-    
-    //     if(Math.abs(error) > 1){
-    //       turnSpeed = Math.signum(error) * SwerveConstants.kS_PERCENT + SwerveConstants.kP_PERCENT * error;
-    //     }
-    //     else{
-    //       turnSpeed = 0;
-    //     }
-    //   }
-    // }
-    // else{
-    double turnSpeed = -turnX;
-    // }
+    double turnSpeed = -turnX * ivtTurn;
 
     // frontSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? frontSpeed * 0.45 : frontSpeed;
     // sideSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? sideSpeed * 0.45 : sideSpeed;
@@ -182,7 +161,7 @@ public class Drivetrain extends SubsystemBase {
       turnX = Math.abs(turnX) > Constants.SwerveConstants.deadbandValue ? turnX : 0;
       turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
-    double turnSpeed = -turnX;
+    double turnSpeed = -turnX; //
 
     //Should theoretically make the robot faster by a factor determined in the constants.java when the fastMode suplier is true
     if(fastMode)
@@ -490,5 +469,16 @@ public class Drivetrain extends SubsystemBase {
         }
     );
 }
-  
+
+public void invertTurn() {
+  if(ivtTurn == 1) {
+    ivtTurn = -1;
+  } else if(ivtTurn == -1) {
+    ivtTurn = 1;
+  }
+  System.out.println(ivtTurn);
 }
+}
+
+  
+

@@ -19,6 +19,8 @@ import edu.wpi.first.apriltag.AprilTagFieldLayout.OriginPosition;
 import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotState;
+// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotContainer;
 
 import frc.robot.Constants.kAutoAlign;
@@ -33,7 +35,7 @@ public class PhotonRunnable implements Runnable {
   private final AtomicReference<EstimatedRobotPose> atomicEstimatedRobotPose = new AtomicReference<EstimatedRobotPose>();
 
   public PhotonRunnable() {
-    this.photonCamera = new PhotonCamera("Arducam_OV9281_USB_Camera");
+    this.photonCamera = new PhotonCamera("FHD_Camera");
     PhotonPoseEstimator photonPoseEstimator = null;
     try {
       var layout = AprilTagFields.k2023ChargedUp.loadAprilTagLayoutField();
@@ -51,7 +53,7 @@ public class PhotonRunnable implements Runnable {
   }
 
   @Override
-  public void run() {      
+  public void run() { 
     // Get AprilTag data
     if (photonPoseEstimator != null && photonCamera != null && !RobotState.isAutonomous()) {
       var photonResults = photonCamera.getLatestResult();

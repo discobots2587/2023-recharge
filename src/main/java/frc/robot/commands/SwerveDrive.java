@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class SwerveDrive extends CommandBase {
+
   /** Creates a new SwerveDrive. */
   public SwerveDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,6 +24,7 @@ public class SwerveDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     if(RobotContainer.drivetrain.getDriveMode() == RobotContainer.drivetrain.getGridMode()){
       RobotContainer.drivetrain.swerveDrive(
         RobotContainer.driverController.getLeftY(), 
@@ -60,8 +62,8 @@ public class SwerveDrive extends CommandBase {
         RobotContainer.driverController.getRightX(),
         -RobotContainer.driverController.getRightY(),
         !RobotContainer.driverController.getRawButton(XboxController.Button.kB.value),
-        RobotContainer.driverController.getRawButton(XboxController.Button.kRightBumper.value),
         RobotContainer.driverController.getRawButton(XboxController.Button.kLeftBumper.value),
+        RobotContainer.driverController.getRawButton(XboxController.Button.kRightBumper.value),
         false,
         true);
     }

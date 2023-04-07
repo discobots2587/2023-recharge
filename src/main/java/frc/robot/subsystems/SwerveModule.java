@@ -14,7 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.AnalogEncoder;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lib.drivers.PearadoxSparkMax;
 import frc.robot.Constants.SwerveConstants;
@@ -124,17 +124,17 @@ public class SwerveModule extends SubsystemBase {
     setAngle(desiredState);
     setSpeed(desiredState);
     
-    SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] State", getState().toString());
-    SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] Desired State", desiredState.toString());
+    // SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] State", getState().toString());
+    // SmartDashboard.putString("Swerve [" + driveMotor.getDeviceId() + "] Desired State", desiredState.toString());
 
-    SmartDashboard.putNumber("Swerve " + driveMotor.getDeviceId() + " Abs Encoder", getAbsoluteEncoderAngle());
+    // SmartDashboard.putNumber("Swerve " + driveMotor.getDeviceId() + " Abs Encoder", getAbsoluteEncoderAngle());
   }
 
   public void setSpeed(SwerveModuleState desiredState){
     driveMotor.set(desiredState.speedMetersPerSecond / SwerveConstants.DRIVETRAIN_MAX_SPEED);
-    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] smps", desiredState.speedMetersPerSecond);
-    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] max speed", SwerveConstants.DRIVETRAIN_MAX_SPEED);
-    SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] speed", desiredState.speedMetersPerSecond / SwerveConstants.DRIVETRAIN_MAX_SPEED);
+    // SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] smps", desiredState.speedMetersPerSecond);
+    // SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] max speed", SwerveConstants.DRIVETRAIN_MAX_SPEED);
+    // SmartDashboard.putNumber("Swerve [" + driveMotor.getDeviceId() + "] speed", desiredState.speedMetersPerSecond / SwerveConstants.DRIVETRAIN_MAX_SPEED);
 
     // driveController.setReference(
     //   desiredState.speedMetersPerSecond,

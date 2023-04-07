@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class AutoBalance extends CommandBase {
-  PIDController initPidController = new PIDController(0.015, 0, 0); //0.027, 0, 0
-  PIDController finalPidController = new PIDController(0.005, 0, 0);
+  PIDController initPidController = new PIDController(0.020, 0, 0); //0.027, 0, 0
+  PIDController finalPidController = new PIDController(0.055, 0, 0); //TUNE (Make it smaller)
 
   /** Creates a new AutoBalance. */
   public AutoBalance() {
@@ -21,7 +21,7 @@ public class AutoBalance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
-
+ 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

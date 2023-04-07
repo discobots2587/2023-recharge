@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxPIDController;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
@@ -104,7 +104,7 @@ public class Intake extends SubsystemBase {
   {
     // This method will be called once per scheduler run
     //SmartDashboard.putNumber("Arm Adjust", armAdjust);
-    SmartDashboard.putNumber("Intake Encoder", intakeEncoder.getPosition());
-    SmartDashboard.putBoolean("Intake Homed", getHomeSwitch());
+    // SmartDashboard.putNumber("Intake Encoder", intakeEncoder.getPosition());
+    // SmartDashboard.putBoolean("Intake Homed", getHomeSwitch());
   }
 }
