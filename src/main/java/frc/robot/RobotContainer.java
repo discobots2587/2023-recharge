@@ -132,6 +132,7 @@ public class RobotContainer {
     autoChooser.addOption("highNodeAndDrive", "highNodeAndDrive");    //()
     autoChooser.addOption("highNodeAndBalance", "highNodeAndBalance");//()
     autoChooser.addOption("cubeHighNodeAndStop", "cubeHighNodeAndStop");
+    autoChooser.addOption("cubeHighNodeStrafeAndExitLeft", "cubeHighNodeStrafeAndExitLeft");
     autoChooser.addOption("TEST", "TEST");                            //()
     /**** Vision tab ****/
     final var visionTab = Shuffleboard.getTab("Vision");
@@ -235,6 +236,10 @@ public class RobotContainer {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
       return Autos.cubeHighNodeAndStop();
+    } else if(autoChooser.getSelected().equals("cubeHighNodeStrafeAndExitLeft")) {
+      drivetrain.resetAllEncoders();
+      drivetrain.setHeading(0);
+      return Autos.cubeHighNodeStrafeAndExitLeft();
     } else if(autoChooser.getSelected().equals("TEST")) {
       drivetrain.resetAllEncoders();
       drivetrain.setHeading(0);
@@ -246,7 +251,7 @@ public class RobotContainer {
     }
   }
 
-  
+
   // public void loadGridButtons(){
   //   for(int r = 0; r < 3; r++){
   //     for(int c = 0; c < 9; c++){

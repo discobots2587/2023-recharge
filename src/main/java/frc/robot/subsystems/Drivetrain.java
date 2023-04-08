@@ -128,7 +128,7 @@ public class Drivetrain extends SubsystemBase {
       turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
 
-    double turnSpeed = -turnX * ivtTurn;
+    double turnSpeed = turnX; 
 
     // frontSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? frontSpeed * 0.45 : frontSpeed;
     // sideSpeed = RobotContainer.driverController.getLeftTriggerAxis() > 0.9 ? sideSpeed * 0.45 : sideSpeed;
@@ -161,7 +161,7 @@ public class Drivetrain extends SubsystemBase {
       turnX = Math.abs(turnX) > Constants.SwerveConstants.deadbandValue ? turnX : 0;
       turnY = Math.abs(turnY) > Constants.SwerveConstants.deadbandValue ? turnY : 0;
     }
-    double turnSpeed = -turnX; //
+    double turnSpeed = turnX; //CHANGE THISSSSSSSSSSSSSSSS
 
     //Should theoretically make the robot faster by a factor determined in the constants.java when the fastMode suplier is true
     if(fastMode)
