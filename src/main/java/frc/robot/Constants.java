@@ -75,13 +75,17 @@ public final class Constants {
     public static final double DRIVETRAIN_MAX_ANGULAR_SPEED = 3.5 * Math.PI;
 
     //Teleop constraints
-    public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED * 0.5;
     public static final double TELE_DRIVE_FAST_SPEED = DRIVETRAIN_MAX_SPEED * 0.75;
     public static final double TELE_DRIVE_SLOW_SPEED = DRIVETRAIN_MAX_SPEED * 0.2;
 
+<<<<<<< Updated upstream
     public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /1.75;
+=======
+    public static final double TELE_DRIVE_MAX_SPEED = DRIVETRAIN_MAX_SPEED;
+    public static final double TELE_DRIVE_MAX_ANGULAR_SPEED = DRIVETRAIN_MAX_ANGULAR_SPEED /2;
+>>>>>>> Stashed changes
     public static final double TELE_DRIVE_MAX_ACCELERATION = 3;
-    public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 3;
+    public static final double TELE_DRIVE_MAX_ANGULAR_ACCELERATION = 1.5;
     public static final double deadbandValue = 0.1;
 
     //Auton constraints
